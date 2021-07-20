@@ -38,23 +38,20 @@ int	add_list(t_container *container, int num)
 	}
 	else
 	{
-		container->end->next = (t_list *)malloc(sizeof(t_list));
-		if (container->end->next == NULL)
+		container->start->previous = (t_list *)malloc(sizeof(t_list));
+		if (container->start->previous == NULL)
 			return (free_list(container, FREE_ALL));
 		if (check_overlap_list(container, num) == FALSE)
 			return (free_list(container, FREE_ALL));
-		container->end->next->data = num;
-		container->end->next->previous = container->end;
-		container->end->next->next = container->start;
-		container->end = container->end->next;
+		container->start->previous->data = num;
+		container->start->previous->next = container->start;
+		container->start->previous->previous = container->end;
+		container->start = container->start->previous;
+		container->end->next = container->start;
 	}
 	container->leng++;
 	return (TRUE);
 }
-
-// str에 아무것도 없는경우, 있긴 한데 이상한게 끼어있거나 int범위 넘는 경우... false.
-// str에 아무것도 없는 경우는 ' '다 날렸는데, 문자열 끝인경우
-// str에 이상한게 있는 경우나 int범위 넣는 경우는 ps_atoi에서 null을 반환한다.
 
 int	ac_to_list(t_container *container, char *str)
 {
@@ -83,7 +80,8 @@ int	ac_to_list(t_container *container, char *str)
 
 int	set_lists(t_container *container, int ac, char **av)
 {
-	int	i;
+	int		i;
+	t_list	*temp;
 
 	if (container != NULL)
 	{
@@ -91,6 +89,16 @@ int	set_lists(t_container *container, int ac, char **av)
 		while (i < ac)
 			if (ac_to_list(container, *(av + i++)) == FALSE)
 				return (free_list(container, FREE_ALL));
+		i = 0;
+		temp = container->start;
+		while (i++ < container->leng)
+		{
+			if (container->min > temp->data)
+				container->min = temp->data;
+			if (container->max < temp->data)
+				container->max = temp->data;
+			temp = temp->next;
+		}
 	}
 	return (TRUE);
 }

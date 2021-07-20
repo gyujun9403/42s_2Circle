@@ -6,6 +6,13 @@ void	swap(t_container *container)
 
 	if (container->leng < 2)
 		return ;
+	else if (container->leng == 2)
+	{
+		temp = container->start;
+		container->start = container->end;
+		container->end = temp;
+		return ;
+	}
 	temp = container->end->previous;
 	container->end->previous->previous->next = container->end;
 	container->end->previous = container->end->previous->previous;
@@ -20,14 +27,16 @@ void	sa(t_container *container, int *count)
 {
 	swap(container);
 	write(1, "sa\n", 3);
-	(*count)++;
+	++(*count);
+	// show_list(container);
 }
 
 void	sb(t_container *container, int *count)
 {
 	swap(container);
 	write(1, "sb\n", 3);
-	(*count)++;
+	++(*count);
+	// show_list(container);
 }
 
 void	ss(t_container *container_a, t_container *container_b, int *count)
@@ -35,5 +44,5 @@ void	ss(t_container *container_a, t_container *container_b, int *count)
 	swap(container_a);
 	swap(container_b);
 	write(1, "ss\n", 3);
-	(*count)++;
+	++(*count);
 }

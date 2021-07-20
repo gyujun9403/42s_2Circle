@@ -1,7 +1,21 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void show_list(t_container *container)
+void	set_container (t_container *a, t_container *b)
+{
+	a->max = -2147483648;
+	a->min = 2147483647;
+	a->start = NULL;
+	a->end = NULL;
+	a->leng = 0;
+	b->max = -2147483648;
+	b->min = 2147483647;
+	b->start = NULL;
+	b->end = NULL;
+	b->leng = 0;
+}
+
+void	show_list(t_container *container)
 {
 	char		data;
 	int			i;
@@ -24,42 +38,24 @@ int	main(int ac, char **av)
 {
 	int			i;
 	int			count;
-	t_container	stack_a;
-	t_container	stack_b;
+	t_container	container_a;
+	t_container	container_b;
 
-	stack_a.leng = 0;
-	stack_b.leng = 0;
+	set_container(&container_a, &container_b);
 	i = 0;
 	if (ac == 1)
 		;
 	else
 	{
-		if (set_lists(&stack_a, ac, av) == TRUE)
+		if (set_lists(&container_a, ac, av) == TRUE)
 		{
-			/*show_list(&stack_a);
-			pa(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
-			show_list(&stack_b);
-			pb(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
-			show_list(&stack_b);
-			pa(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
-			show_list(&stack_b);*/
-			sa(&stack_a, &count);
-			show_list(&stack_a);
-			ss(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
-			ra(&stack_a, &count);
-			show_list(&stack_a);
-			rr(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
-			rra(&stack_a, &count);
-			show_list(&stack_a);
-			rrr(&stack_a, &stack_b, &count);
-			show_list(&stack_a);
+			show_list(&container_a);
+			if (a_is_sorted(&container_a, container_a.leng) == FALSE)
+				quick_sort(&container_a, &container_b, &count);
+			show_list(&container_a);
+			printf("count : %d", count);
 		}
 		else
-			write(1, "FAIL!\n", 6);
+			write(1, "Error\n", 6);
 	}
 }
