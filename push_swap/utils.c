@@ -43,7 +43,7 @@ int	a_is_sorted(t_container *container_a, int check)
 		num_check = container_a->leng;
 	while (i++ < num_check)
 	{
-		if (temp->previous->data > temp->data)
+		if (temp->previous->data < temp->data)
 			return (FALSE);
 		temp = temp->previous;
 	}
@@ -67,7 +67,7 @@ int	b_is_sorted(t_container *container_b, int check)
 		num_check = container_b->leng;
 	while (i++ < num_check)
 	{
-		if (temp->previous->data < temp->data)
+		if (temp->previous->data > temp->data)
 			return (FALSE);
 		temp = temp->previous;
 	}

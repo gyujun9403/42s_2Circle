@@ -49,11 +49,18 @@ int	main(int ac, char **av)
 	{
 		if (set_lists(&container_a, ac, av) == TRUE)
 		{
-			show_list(&container_a);
-			if (a_is_sorted(&container_a, container_a.leng) == FALSE)
-				quick_sort(&container_a, &container_b, &count);
-			show_list(&container_a);
-			printf("count : %d", count);
+			//show_list(&container_a);
+			if (a_is_sorted(&container_a, container_a.leng) == FALSE || container_a.leng > 1)
+			{
+				if (container_a.leng == 2)
+					sort_two_a(&container_a, &count);
+				else if (container_a.leng == 3)
+					sort_just_three_a(&container_a, &count);
+				else
+					quick_sort(&container_a, &container_b, &count);
+			}
+			//show_list(&container_a);
+			//printf("count : %d", count);
 		}
 		else
 			write(1, "Error\n", 6);

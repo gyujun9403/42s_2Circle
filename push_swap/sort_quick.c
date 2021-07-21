@@ -1,32 +1,45 @@
 #include "push_swap.h"
 
-int find_pivot(short ab, t_container *container, int *count)
+int find_pivot(short ab, t_container *container, int leng)
 {
-	int	top_flg;
-	int	top_of_second_flg;
+	// 최대/최소값에서 평균을 내서, 그 차이가 가장 작은 값을 pivot으로 선정. <- 실패
+	// 각 a, b에 2개/3씩만 남기는건 어떨까? a는 2/3번째로 큰 값을, b는 2/3번째로 작은 값을 피봇으로 잡으면 될 꺼 같은데..
+	int				i;
+	int				max;
+	int				pivot;
+	int				min;
+	t_list			*temp;
 
-	top_flg = FALSE;
-	top_of_second_flg = FALSE;
-	if (container->end->data == container->max || container->end->data == container->min)
-		top_flg = TRUE;
-	if (container->end->previous->data == container->max
-		|| container->end->previous->data == container->min)
-		top_of_second_flg = TRUE;
-	if (top_flg == TRUE && top_of_second_flg == TRUE)
+	i = 0;
+	temp = container->end;
+	max = -2147483648;
+	min = 2147483647;
+	if (ab == A)
 	{
-		if (ab == A)
-			rra(container, count);
-		else
-			rrb(container, count);
+		while (i++ < leng)
+		{
+			if (temp->data != container->max && temp->data > max)
+			{
+				pivot = temp->data;
+				max = temp->data;
+			}
+			temp = temp->previous;
+		}
 	}
-	else if (top_flg == TRUE)
+	else
 	{
-		if (ab == A)
-			sa(container, count);
-		else
-			sb(container, count);
+		while (i++ < leng)
+		{
+			if (temp->data != container->min && temp->data < min)
+			{
+				pivot = temp->data;
+				min = temp->data;
+			}
+			temp = temp->previous;
+		}
 	}
-	return (container->end->data);
+		
+	return (pivot);
 }
 
 void	quick_sort(t_container *a, t_container *b, int *count)
@@ -49,26 +62,28 @@ void	quick_a(t_container *a, t_container *b, int *count, int leng)
 		return ;
 	else if (leng == 2)
 		return (sort_two_a(a, count));
+	else if (leng == 3 && a->leng == 3)
+		return (sort_just_three_a(a, count));
 	else if (leng == 3)
 		return (sort_top_three_a(a, count));
 	else if (a_is_sorted(a, leng) == TRUE)
 		return ;
 	i = 0;
 	cnt_push = 0;
-	pivot = find_pivot(A, a, count);
+	pivot = find_pivot(A, a, leng);
 	while (i++ < leng)
 	{
-		if (a->end->data > pivot)
+		if (a->end->data < pivot)
 		{
 			pb(a, b, count);
 			++cnt_push;
 		}
 		else
-			if (a->end->previous->data != pivot)
-			{
-				ra(a, count);
-			}
+			ra(a, count);
 	}
+	i = 0;
+	while (i++ < leng - cnt_push)
+		rra(a, count);
 	quick_a(a, b, count, leng - cnt_push);
 	quick_b(a, b, count, cnt_push);
 	while (cnt_push--)
@@ -85,26 +100,28 @@ void	quick_b(t_container *a, t_container *b, int *count, int leng)
 		return ;
 	else if (leng == 2)
 		return (sort_two_b(b, count));
+	else if (leng == 3 && b->leng == 3)
+		return (sort_just_three_b(b, count));
 	else if (leng == 3)
 		return (sort_top_three_b(b, count));
 	else if (b_is_sorted(b, leng) == TRUE)
 		return ;
 	i = 0;
 	cnt_push = 0;
-	pivot = find_pivot(B, b, count);
-	while (++i < leng)
+	pivot = find_pivot(B, b, leng);
+	while (i++ < leng)
 	{
-		if (b->end->data < pivot)
+		if (b->end->data > pivot)
 		{
 			pa(a, b, count);
 			++cnt_push;
 		}
 		else
-			if (b->end->previous->data != pivot)
-			{
-				rb(b, count);
-			}
+			rb(b, count);
 	}
+	i = 0;
+	while (i++ < leng - cnt_push)
+		rrb(b, count);
 	quick_b(a, b, count, leng - cnt_push);
 	quick_a(a, b, count, cnt_push);
 	while (cnt_push--)
