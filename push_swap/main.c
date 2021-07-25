@@ -17,7 +17,6 @@ void	set_container (t_container *a, t_container *b)
 
 void	show_list(t_container *container)
 {
-	char		data;
 	int			i;
 	t_list	*ptr;
 
