@@ -1,75 +1,36 @@
+
 #include "push_swap.h"
 
-int find_pivot(t_container *container, int leng)
+void find_two_pivot(t_container *container, int leng, int *pivot)
 {
-	int				pivot;
-	// 최대/최소값에서 평균을 내서, 그 차이가 가장 작은 값을 pivot으로 선정. <- 실패
-	// 각 a, b에 2개/3씩만 남기는건 어떨까? a는 2/3번째로 큰 값을, b는 2/3번째로 작은 값을 피봇으로 잡으면 될 꺼 같은데..
-	unsigned int 	interval;
-	int				midian;
-	int				i;
-	t_list			*temp;
-
-	interval = 4294967295;
-	midian = (container->max + container->min) / 2;
-	i = 0;
-	temp = container->end;
-	while (i++ < leng)
-	{
-		if (midian > temp->data)
-		{
-			if ((unsigned int)(midian - temp->data) < interval)
-			{
-				interval = midian - temp->data;
-				pivot = temp->data;
-			}
-		}
-		else
-		{
-			if ((unsigned int)(temp->data - midian) < interval)
-			{
-				interval = temp->data - midian;
-				pivot = temp->data;
-			}
-		}
-		temp = temp->previous;
-	}
-	
-	/*int				i;
-	int				max;
-	int				min;
-	t_list			*temp;
+	int *temp_arr;
+	t_list	*ptr;
+	int i;
+	int j;
 
 	i = 0;
-	temp = container->end;
-	max = -2147483648;
-	min = 2147483647;
-	if (ab == A)
+	ptr = container->end;
+	temp_arr = (int *)malloc(leng * sizeof(int));
+	while (i < leng)
 	{
-		while (i++ < leng)
-		{
-			if (temp->data != container->max && temp->data > max)
-			{
-				pivot = temp->data;
-				max = temp->data;
-			}
-			temp = temp->previous;
-		}
+		temp_arr[i++] = ptr->data;
+		ptr = ptr->previous;
 	}
-	else
+	i = 0;
+	while (i < leng)
 	{
-		while (i++ < leng)
+		j = 0;
+		while (j + i + 1< leng)
 		{
-			if (temp->data != container->min && temp->data < min)
-			{
-				pivot = temp->data;
-				min = temp->data;
-			}
-			temp = temp->previous;
+			if (temp_arr[j] > temp_arr[j + 1])
+				element_swap(&temp_arr[j], &temp_arr[j + 1]);
+			++j;
 		}
-	}*/
-		
-	return (pivot);
+		++i;
+	}
+	pivot[0] = temp_arr[(int)leng / 3];
+	pivot[1] = temp_arr[(int)leng * 2 / 3];
+	free(temp_arr);
 }
 
 void	quick_sort(t_container *a, t_container *b, int *count)
@@ -85,66 +46,137 @@ void	quick_sort(t_container *a, t_container *b, int *count)
 void	quick_a(t_container *a, t_container *b, int *count, int leng)
 {
 	int	i;
-	int	cnt_push;
-	int	pivot;
+	int cnt_ra;
+	int	cnt_pb;
+	int	cnt_pbrb;
+	int	pivot[2];
 
 	if (leng < 2)
-		return ;
-	else if (leng == 2)
-		return (sort_two_a(a, count));
-	else if (leng == 3 && a->leng == 3)
-		return (sort_just_three_a(a, count));
-	else if (leng == 3)
-		return (sort_top_three_a(a, count));
-	else if (a_is_sorted(a, leng) == TRUE)
-		return ;
-	i = 0;
-	cnt_push = 0;
-	pivot = find_pivot(a, leng);
-	while (i++ < leng)
 	{
-		if (a->end->data < pivot)
-		{
-			pb(a, b, count);
-			++cnt_push;
-		}
-		else
-			ra(a, count);
+		// printf("a one\n");
+		// write(1, "a : ", 4); show_list(a);
+		// write(1, "b : ", 4); show_list(b);
+		return ;
+	}
+	else if (leng == 2)
+	{
+		sort_two_a(a, count);
+		// printf("a two\n");
+		// write(1, "a : ", 4); show_list(a);
+		// write(1, "b : ", 4); show_list(b);
+		return ;
+	}
+	else if (leng == 3 && a->leng == 3)
+	{
+		sort_just_three_a(a, count);
+		// printf("a three\n");
+		// write(1, "a : ", 4); show_list(a);
+		// write(1, "b : ", 4); show_list(b);
+		return ;
+	}
+	else if (leng == 3)
+	{
+		sort_top_three_a(a, count);
+		// printf("a top three\n");
+		// write(1, "a : ", 4); show_list(a);
+		// write(1, "b : ", 4); show_list(b);
+		return ;
+	}
+	else if (a_is_sorted(a, leng) == TRUE)
+	{
+		// printf("a sorted\n");
+		// write(1, "a : ", 4); show_list(a);
+		// write(1, "b : ", 4); show_list(b);
+		return ;
+	}
+	else if (leng == 5)
+	{
+		return (sort_five_a(a, b, count));
 	}
 	i = 0;
-	while (i++ < leng - cnt_push)
+	cnt_ra = 0;
+	cnt_pb = 0;
+	cnt_pbrb = 0;
+	find_two_pivot(a, leng, pivot);
+	while (i++ < leng)
+	{
+		if (a->end->data >= pivot[1])
+		{
+			ra(a, count);
+			++cnt_ra;
+		}
+		else
+		{
+			if (a->end->data >= pivot[0])
+			{
+				pb(a, b, count);
+				rb(b, count);
+				++cnt_pbrb;
+			}
+			else
+			{
+				pb(a, b, count);
+				++cnt_pb;
+			}
+		}
+	}
+	i = 0;
+	while (i < find_smaller(cnt_ra, cnt_pbrb))
+	{
+		rrr(a, b, count);
+		++i;
+	}
+	while (i < cnt_ra)
+	{
 		rra(a, count);
-	quick_a(a, b, count, leng - cnt_push);
-	quick_b(a, b, count, cnt_push);
+		++i;
+	}
+	while (i++ < cnt_pbrb)
+		rrb(b, count);
+	// printf("[quick a]\n");
+	// printf("pivot0 : %d\n", pivot[0]);
+	// printf("pivot1 : %d\n", pivot[1]);
+	// printf("cnt_ra : %d\n", cnt_ra);
+	// printf("cnt_pb : %d\n", cnt_pb);
+	// printf("cnt_pbrb : %d\n", cnt_pbrb);
+	// write(1, "a : ", 4); show_list(a);
+	// write(1, "b : ", 4); show_list(b);
+	quick_a(a, b, count, cnt_ra);
+	quick_b(a, b, count, cnt_pbrb);
+	quick_b(a, b, count, cnt_pb);
 }
 
 void	quick_b(t_container *a, t_container *b, int *count, int leng)
 {
+	//int chr;
+
 	int	i;
-	int	cnt_push;
-	int	pivot;
+	int cnt_rb;
+	int	cnt_pa;
+	int	cnt_para;
+	int	pivot[2];
 
 	if (leng == 1)
 		return pa(a, b, count);
 	else if (leng == 2)
 	{	
-		sort_two_b(b, count);
-		pa(a, b, count);
-		pa(a, b, count);
+		sort_two_b(a, b, count);
+		// pa(a, b, count);
+		// pa(a, b, count);
 		return ;
 	}
 	else if (leng == 3 && b->leng == 3)
 	{
-		sort_just_three_b(b, count);
-		while (leng-- > 0)
-			pa(a, b, count);
+		sort_just_three_b(a, b, count);
+		// while (leng-- > 0)
+		// 	pa(a, b, count);
 		return ;
 	}
 	else if (leng == 3)
 	{
-		sort_top_three_b(b, count);
-		while (leng-- > 0)
-			pa(a, b, count);
+		sort_top_three_b(a, b, count);
+		// while (leng-- > 0)
+		// 	pa(a, b, count);
 		return ;
 	}
 	else if (b_is_sorted(b, leng) == TRUE)
@@ -153,22 +185,60 @@ void	quick_b(t_container *a, t_container *b, int *count, int leng)
 			pa(a, b, count);
 		return ;
 	}
-	i = 0;
-	cnt_push = 0;
-	pivot = find_pivot(b, leng);
-	while (i++ < leng)
+	else if (leng == 5)
 	{
-		if (b->end->data > pivot)
-		{
-			pa(a, b, count);
-			++cnt_push;
-		}
-		else
-			rb(b, count);
+		return (sort_five_b(a, b, count));
 	}
 	i = 0;
-	while (i++ < leng - cnt_push)
+	cnt_rb = 0;
+	cnt_pa = 0;
+	cnt_para = 0;
+	find_two_pivot(b, leng, pivot);
+	while (i++ < leng)
+	{
+		if (b->end->data > pivot[1])
+		{
+			pa(a, b, count);
+			++cnt_pa;
+		}
+		else
+		{
+			if (b->end->data > pivot[0])
+			{
+				pa(a, b, count);
+				ra(a, count);
+				++cnt_para;
+			}
+			else
+			{
+				rb(b, count);
+				++cnt_rb;
+			}
+		}
+	}
+	i = 0;
+	quick_a(a, b, count, cnt_pa);
+	while (i < find_smaller(cnt_rb, cnt_para))
+	{
+		rrr(a, b, count);
+		++i;
+	}
+	while (i < cnt_rb)
+	{
 		rrb(b, count);
-	quick_a(a, b, count, cnt_push);
-	quick_b(a, b, count, leng - cnt_push);
+		++i;
+	}
+	while (i++ < cnt_para)
+		rra(a, count);
+	// printf("[quick b]\n");
+	// printf("pivot0 : %d\n", pivot[0]);
+	// printf("pivot1 : %d\n", pivot[1]);
+	// printf("cnt_rb : %d\n", cnt_rb);
+	// printf("cnt_pa : %d\n", cnt_pa);
+	// printf("cnt_para : %d\n", cnt_para);
+	// write(1, "a : ", 4); show_list(a);
+	// write(1, "b : ", 4); show_list(b);
+	quick_a(a, b, count, cnt_para);
+	
+	quick_b(a, b, count, cnt_rb);
 }

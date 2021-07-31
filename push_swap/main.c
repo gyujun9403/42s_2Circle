@@ -40,6 +40,7 @@ int	main(int ac, char **av)
 	t_container	container_a;
 	t_container	container_b;
 
+	count = 0;
 	set_container(&container_a, &container_b);
 	i = 0;
 	if (ac == 1)

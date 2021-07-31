@@ -1,63 +1,87 @@
 #include "push_swap.h"
 
-void	sort_two_b(t_container *container_b, int *count)
+void	sort_two_b(t_container *a, t_container *b, int *count)
 {
-	if (container_b->end->previous->data > container_b->end->data)
-		sb(container_b, count);
+	if (b->end->previous->data > b->end->data)
+		sb(b, count);
+	pa(a, b, count);
+	pa(a, b, count);
 }
 
-void	sort_two_a(t_container *container_a, int *count)
+void	sort_two_a(t_container *a, int *count)
 {
-	if (container_a->end->previous->data < container_a->end->data)
-		sa(container_a, count);
+	if (a->end->previous->data < a->end->data)
+		sa(a, count);
 }
-
-void	sort_just_three_b(t_container *container_b, int *count)
+/*
+** sort_just_three_b must sort like [BOTTOM]1 2 3[TOP]
+** error_case : list size is 
+** case1 : 1 2 3
+** case2 : 2 1 3
+** case3 : 1 3 2
+** case4 : 2 3 1
+** case5 : 3 1 2
+** case6 : 3 2 1
+*/
+void	sort_just_three_b(t_container *a, t_container *b, int *count)
 {
 	int	num_of_cases;
 
-	num_of_cases = compare_top_three(container_b);
+	num_of_cases = compare_top_three(b);
 	if (num_of_cases == CASE1)
 		;
 	else if (num_of_cases == CASE2)
 	{
-		rrb(container_b, count);
-		sb(container_b, count);
+		rrb(b, count);
+		sb(b, count);
 	}
 	else if (num_of_cases == CASE3)
-		sb(container_b, count);
+		sb(b, count);
 	else if (num_of_cases == CASE4)
-		rb(container_b, count);
+		rb(b, count);
 	else if (num_of_cases == CASE5)
-		rrb(container_b, count);
+		rrb(b, count);
 	else if (num_of_cases == CASE6)
 	{
-		rrb(container_b, count);
-		sb(container_b, count);
+		rb(b, count);
+		sb(b, count);
 	}
+	pa(a, b, count);
+	pa(a, b, count);
+	pa(a, b, count);
 }
 
-void	sort_just_three_a(t_container *container_a, int *count)
+/*
+** sort_just_three_a must sort like [BOTTOM]3 2 1[TOP]
+** error_case : list size is 
+** case1 : 1 2 3
+** case2 : 2 1 3
+** case3 : 1 3 2
+** case4 : 2 3 1
+** case5 : 3 1 2
+** case6 : 3 2 1
+*/
+void	sort_just_three_a(t_container *a, int *count)
 {
 	int	num_of_cases;
 
-	num_of_cases = compare_top_three(container_a);
+	num_of_cases = compare_top_three(a);
 	if (num_of_cases == CASE1)
 	{
-		ra(container_a, count);
-		sa(container_a, count);
+		ra(a, count);
+		sa(a, count);
 	}
 	else if (num_of_cases == CASE2)
-		ra(container_a, count);
+		ra(a, count);
 	else if (num_of_cases == CASE3)
-		rra(container_a, count);
+		rra(a, count);
 	else if (num_of_cases == CASE4)
 	{
-		rra(container_a, count);
-		sa(container_a, count);
+		rra(a, count);
+		sa(a, count);
 	}
 	else if (num_of_cases == CASE5)
-		sa(container_a, count);
+		sa(a, count);
 	else if (num_of_cases == CASE6)
 		;
 }

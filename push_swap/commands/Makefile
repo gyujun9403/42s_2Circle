@@ -8,3 +8,4 @@ SRC = commands_push.c \
 
 all : $(SRC)
 	$(GCC) $(GCCFLAGS) -c $? -I $(DIR_HEADER)
+.PHONY : all
