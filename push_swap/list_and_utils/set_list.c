@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_list.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:51:27 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 22:11:39 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	check_overlap_list(t_container *container, int num)
@@ -79,7 +91,6 @@ int	ac_to_list(t_container *container, char *str)
 int	set_lists(t_container *container, int ac, char **av)
 {
 	int		i;
-	t_list	*temp;
 
 	if (container != NULL)
 	{
@@ -87,16 +98,6 @@ int	set_lists(t_container *container, int ac, char **av)
 		while (i < ac)
 			if (ac_to_list(container, *(av + i++)) == FALSE)
 				return (free_list(container, FREE_ALL));
-		i = 0;
-		temp = container->start;
-		while (i++ < container->leng)
-		{
-			if (container->min > temp->data)
-				container->min = temp->data;
-			if (container->max < temp->data)
-				container->max = temp->data;
-			temp = temp->next;
-		}
 	}
 	return (TRUE);
 }

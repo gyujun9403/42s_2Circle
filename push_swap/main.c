@@ -1,68 +1,52 @@
-#include "push_swap.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:59:54 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 22:09:16 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	set_container (t_container *a, t_container *b)
+#include "push_swap.h"
+
+void	set_container(t_container *a, t_container *b)
 {
-	a->max = -2147483648;
-	a->min = 2147483647;
 	a->start = NULL;
 	a->end = NULL;
 	a->leng = 0;
-	b->max = -2147483648;
-	b->min = 2147483647;
 	b->start = NULL;
 	b->end = NULL;
 	b->leng = 0;
 }
 
-void	show_list(t_container *container)
-{
-	int			i;
-	t_list	*ptr;
-
-	i = 0;
-	ptr = container->start;
-	while (i++ < container->leng)
-	{
-		//data = ptr->data + '0';
-		printf("%d\t", ptr->data);
-		//write(1, &data, 1);
-		//write(1, "\t", 1);
-		ptr = ptr->next;
-	}
-	printf("\n");
-}
-
 int	main(int ac, char **av)
 {
-	int			i;
 	int			count;
-	t_container	container_a;
-	t_container	container_b;
+	t_container	a;
+	t_container	b;
 
 	count = 0;
-	set_container(&container_a, &container_b);
-	i = 0;
-	if (ac == 1)
-		;
-	else
+	set_container(&a, &b);
+	if (ac != 1)
 	{
-		if (set_lists(&container_a, ac, av) == TRUE)
+		if (set_lists(&a, ac, av) == TRUE)
 		{
-			//show_list(&container_a);
-			if (a_is_sorted(&container_a, container_a.leng) == FALSE || container_a.leng > 1)
+			if (a_is_sorted(&a, a.leng) == FALSE || a.leng > 1)
 			{
-				if (container_a.leng == 2)
-					sort_two_a(&container_a, &count);
-				else if (container_a.leng == 3)
-					sort_just_three_a(&container_a, &count);
+				if (a.leng == 2)
+					sort_two_a(&a, &count);
+				else if (a.leng == 3)
+					sort_just_three_a(&a, &count);
 				else
-					quick_sort(&container_a, &container_b, &count);
+					quick_a(&a, &b, &count, a.leng);
 			}
-			//show_list(&container_a);
-			//printf("count : %d", count);
 		}
 		else
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
+		free_list(&a, FREE_ALL);
+		free_list(&b, FREE_ALL);
 	}
 }

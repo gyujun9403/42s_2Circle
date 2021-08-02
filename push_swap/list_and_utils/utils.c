@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:49:17 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 22:21:23 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	*ps_atoi(char *str, int *num_container)
@@ -106,23 +118,4 @@ int	compare_top_three(t_container *container)
 		return (CASE5);
 	else
 		return (CASE6);
-}
-
-void set_min_max(t_container *container)
-{
-	int 	i;
-	t_list	*temp;
-
-	i = 0;
-	temp = container->start;
-	container->max = -2147483648;
-	container->min = 2147483647;
-	while (i++ < container->leng)
-	{
-		if (temp->data > container->max)
-			container->max = temp->data;
-		if (temp->data < container->min)
-			container->min = temp->data;
-		temp = temp->next;
-	}
 }

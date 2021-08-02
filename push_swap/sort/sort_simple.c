@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:59:38 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 21:59:39 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_two_b(t_container *a, t_container *b, int *count)
@@ -13,6 +25,7 @@ void	sort_two_a(t_container *a, int *count)
 	if (a->end->previous->data < a->end->data)
 		sa(a, count);
 }
+
 /*
 ** sort_just_three_b must sort like [BOTTOM]1 2 3[TOP]
 ** error_case : list size is 

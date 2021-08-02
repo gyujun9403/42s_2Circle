@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:51:36 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 21:51:38 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int find_smaller(int a, int b)
+int	find_smaller(int a, int b)
 {
 	if (a > b)
 		return (b);
@@ -8,7 +20,7 @@ int find_smaller(int a, int b)
 		return (a);
 }
 
-int find_bigger(int a, int b)
+int	find_bigger(int a, int b)
 {
 	if (a < b)
 		return (b);
@@ -16,9 +28,9 @@ int find_bigger(int a, int b)
 		return (a);
 }
 
-void element_swap(int *a, int *b)
+void	element_swap(int *a, int *b)
 {
-	int temp;
+	int	temp;
 
 	temp = (*a);
 	*a = *b;

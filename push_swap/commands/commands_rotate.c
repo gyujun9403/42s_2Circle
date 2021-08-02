@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_rotate.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:49:37 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 21:50:17 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /*
@@ -10,7 +22,6 @@ void	ra(t_container *container_a, int *count)
 	container_a->end = container_a->end->previous;
 	++(*count);
 	write(1, "ra\n", 3);
-	// show_list(container_a);
 }
 
 void	rb(t_container *container_b, int *count)
@@ -19,7 +30,6 @@ void	rb(t_container *container_b, int *count)
 	container_b->end = container_b->end->previous;
 	++(*count);
 	write(1, "rb\n", 3);
-	// show_list(container_b);
 }
 
 void	rr(t_container *container_a, t_container *container_b, int *count)

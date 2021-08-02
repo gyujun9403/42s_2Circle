@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_swap.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:50:26 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 21:50:28 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_container *container)
@@ -28,7 +40,6 @@ void	sa(t_container *container, int *count)
 	swap(container);
 	write(1, "sa\n", 3);
 	++(*count);
-	// show_list(container);
 }
 
 void	sb(t_container *container, int *count)
@@ -36,7 +47,6 @@ void	sb(t_container *container, int *count)
 	swap(container);
 	write(1, "sb\n", 3);
 	++(*count);
-	// show_list(container);
 }
 
 void	ss(t_container *container_a, t_container *container_b, int *count)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_push.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:49:29 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 22:11:25 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_other_to_this(t_container *other, t_container *this)
@@ -32,31 +44,13 @@ void	push_other_to_this(t_container *other, t_container *this)
 void	pa(t_container *container_a, t_container *container_b, int *count)
 {
 	push_other_to_this(container_b, container_a);
-	if (container_a->end->data > container_a->max)
-		container_a->max = container_a->end->data;
-	if (container_a->end->data < container_a->min)
-		container_a->min = container_a->end->data;
-	if (container_a->end->data == container_b->min
-		|| container_a->end->data == container_b->max)
-		set_min_max(container_b);
 	++(*count);
 	write(1, "pa\n", 3);
-	// show_list(container_a);
-	// show_list(container_b);
 }
 
 void	pb(t_container *container_a, t_container *container_b, int *count)
 {
 	push_other_to_this(container_a, container_b);
-	if (container_b->end->data > container_b->max)
-		container_b->max = container_b->end->data;
-	if (container_b->end->data < container_b->min)
-		container_b->min = container_b->end->data;
-	if (container_b->end->data == container_a->min
-		|| container_b->end->data == container_a->max)
-		set_min_max(container_a);
 	++(*count);
 	write(1, "pb\n", 3);
-	// show_list(container_a);
-	// show_list(container_b);
 }

@@ -1,11 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/02 21:51:01 by gyeon             #+#    #+#             */
+/*   Updated: 2021/08/02 23:04:03 by gyeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#include <stdio.h>
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # define FALSE 0
 # define TRUE 1
@@ -13,17 +21,6 @@
 # define FREE_ALL 1
 # define A 0
 # define B 1
-# define PA 0
-# define PB 1
-# define SA 2
-# define SB 3
-# define SS 4
-# define RA 5
-# define RB 6
-# define RR 7
-# define RRA 8
-# define RRB 9
-# define RRR 10
 # define CASE1 1
 # define CASE2 2
 # define CASE3 3
@@ -43,11 +40,8 @@ typedef struct s_container
 {
 	struct s_list	*start;
 	struct s_list	*end;
-	int				min;
-	int				max;
 	int				leng;
 }	t_container;
-
 
 void	show_list(t_container *container);
 
@@ -86,12 +80,14 @@ void	sort_just_three_b(t_container *a, t_container *b, int *count);
 void	sort_top_three_a(t_container *a, int *count);
 void	sort_top_three_b(t_container *a, t_container *b, int *count);
 
-void	sort_five_a(t_container* a, t_container* b, int *count);
-void	sort_five_b(t_container* a, t_container* b, int *count);
+void	sort_four_a(t_container *a, t_container	*b, int *count);
+void	sort_four_b(t_container *a, t_container	*b, int *count);
 
-void	quick_sort(t_container *a, t_container *b, int *count);
+void	sort_five_a(t_container *a, t_container *b, int *count);
+void	sort_five_b(t_container *a, t_container *b, int *count);
+
+void	find_two_pivot(t_container *container, int leng, int *pivot);
 void	quick_a(t_container *a, t_container *b, int *count, int leng);
 void	quick_b(t_container *a, t_container *b, int *count, int leng);
-
 
 #endif
