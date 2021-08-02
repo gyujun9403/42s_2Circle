@@ -5,19 +5,15 @@ TARGET = ./push_swap
 SUB_DIRS = ./commands ./list_and_utils ./sort
 MAIN = ./main.c
 DIR_HEADER = ./header
-OBJECTS = $(addsuffix *.o, $(SUB_DIRS))
+OBJECTS = $(addsuffix /*.o, $(SUB_DIRS))
 
 all : $(TARGET)
-$(TARGET) : make_sub make_main $(OBJECTS)
-	$(GCC) $(GCCFLAGS) -o $@ $?
-make_main :
+$(TARGET) : $(OBJECTS) $(MAIN:.c=.o)
+	$(GCC) $(GCCFLAGS) -o $@ $^
+$(OBJECTS) : 
+	@$(MAKE) -C $(@:*.o=) all;
+$(MAIN:.c=.o) : 
 	$(GCC) $(GCCFLAGS) -c $(MAIN) -I $(DIR_HEADER)
-	@mv $(MAIN:.c=.o) $(DIR_OBJECTS)
-make_sub : 
-	@for dir in $(SUB_DIRS); do \
-		$(MAKE) -C $$dir all; \
-		if [ $$? != 0 ]; then exit 1; fi; \
-	done
 clean : 
 	rm -f $(OBJECTS)
 fclean : 
