@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:51:01 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 23:04:03 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/03 14:51:21 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ typedef struct s_container
 	int				leng;
 }	t_container;
 
-void	show_list(t_container *container);
-
+/*
+**	functions for setting list and utils
+*/
 char	*ps_atoi(char *str, int *num_container);
 int		set_lists(t_container *container, int ac, char **av);
 int		free_list(t_container *container, short flg);
@@ -72,8 +73,12 @@ void	rra(t_container *a, int *count);
 void	rrb(t_container *b, int *count);
 void	rrr(t_container *a, t_container *b, int *count);
 
+/*
+**	functions for sorting
+*/
 void	sort_two_a(t_container *a, int *count);
 void	sort_two_b(t_container *a, t_container *b, int *count);
+
 void	sort_just_three_a(t_container *a, int *count);
 void	sort_just_three_b(t_container *a, t_container *b, int *count);
 
