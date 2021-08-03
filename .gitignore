@@ -1,0 +1,6 @@
+*test*
+*.o
+checker*
+.vscode/
+temp/
+

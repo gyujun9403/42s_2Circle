@@ -6,7 +6,7 @@
 #    By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 14:34:23 by gyeon             #+#    #+#              #
-#    Updated: 2021/08/03 14:34:24 by gyeon            ###   ########.fr        #
+#    Updated: 2021/08/03 15:18:47 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ DIR_COMMANDS = ./commands/
 DIR_LIST = ./list_and_utils/
 DIR_UTILS = ./list_and_utils/
 DIR_SORT = ./sort/
-DIR_OBJS = ./objs/
 COMMANDS = commands_push.c commands_rotate.c \
 	commands_rrotate.c commands_swap.c
 LIST = set_list.c
