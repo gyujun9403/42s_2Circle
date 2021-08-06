@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:59:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/06 11:14:07 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 15:57:46 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ int	main(int ac, char **av)
 		{
 			if (a_is_sorted(&a, a.leng) == FALSE || a.leng > 1)
 				quick_a(&a, &b, a.leng);
+			free_list(&a, FREE_ALL);
+			free_list(&b, FREE_ALL);
+			return (0);
 		}
-		else
-			write(2, "Error\n", 6);
+		write(2, "Error\n", 6);
 		free_list(&a, FREE_ALL);
 		free_list(&b, FREE_ALL);
-		return (0);
+		return (-1);
 	}
 }
