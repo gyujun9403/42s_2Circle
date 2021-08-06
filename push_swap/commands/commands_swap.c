@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:50:26 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 21:50:28 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:04:18 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,21 @@ void	swap(t_container *container)
 	container->end = temp;
 }
 
-void	sa(t_container *container, int *count)
+void	sa(t_container *container)
 {
 	swap(container);
 	write(1, "sa\n", 3);
-	++(*count);
 }
 
-void	sb(t_container *container, int *count)
+void	sb(t_container *container)
 {
 	swap(container);
 	write(1, "sb\n", 3);
-	++(*count);
 }
 
-void	ss(t_container *container_a, t_container *container_b, int *count)
+void	ss(t_container *container_a, t_container *container_b)
 {
 	swap(container_a);
 	swap(container_b);
 	write(1, "ss\n", 3);
-	++(*count);
 }

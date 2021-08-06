@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 22:30:59 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 23:31:23 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:14:49 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	find_mid(t_container *container)
 	return (temp_arr[2]);
 }
 
-void	sort_four_a(t_container *a, t_container	*b, int *count)
+void	sort_four_a(t_container *a, t_container	*b)
 {
 	int	i;
 	int	mid;
@@ -51,20 +51,20 @@ void	sort_four_a(t_container *a, t_container	*b, int *count)
 	while (i++ < 4)
 	{
 		if (a->end->data >= mid)
-			ra(a, count);
+			ra(a);
 		else
-			pb(a, b, count);
+			pb(a, b);
 	}
 	if (a->leng != 2)
 	{
-		rra(a, count);
-		rra(a, count);
+		rra(a);
+		rra(a);
 	}
-	sort_two_a(a, count);
-	sort_two_b(a, b, count);
+	sort_two_a(a);
+	sort_two_b(a, b);
 }
 
-void	sort_four_b(t_container *a, t_container	*b, int *count)
+void	sort_four_b(t_container *a, t_container	*b)
 {
 	int	i;
 	int	mid;
@@ -74,15 +74,15 @@ void	sort_four_b(t_container *a, t_container	*b, int *count)
 	while (i++ < 4)
 	{
 		if (b->end->data >= mid)
-			pa(a, b, count);
+			pa(a, b);
 		else
-			rb(b, count);
+			rb(b);
 	}
 	if (b->leng != 2)
 	{
-		rrb(b, count);
-		rrb(b, count);
+		rrb(b);
+		rrb(b);
 	}
-	sort_two_a(a, count);
-	sort_two_b(a, b, count);
+	sort_two_a(a);
+	sort_two_b(a, b);
 }

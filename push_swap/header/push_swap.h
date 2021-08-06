@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:51:01 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/03 14:51:21 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:06:47 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ps_atoi(char *str, int *num_container);
 int		set_lists(t_container *container, int ac, char **av);
 int		free_list(t_container *container, short flg);
 int		compare_top_three(t_container *container);
-void	command_hub(int command, t_container *a, t_container *b, int *count);
+void	command_hub(int command, t_container *a, t_container *b);
 int		a_is_sorted(t_container *a, int check);
 int		b_is_sorted(t_container *b, int check);
 void	set_min_max(t_container *container);
@@ -61,38 +61,38 @@ void	element_swap(int *a, int *b);
 /*
 **	functions for operating stack
 */
-void	pa(t_container *a, t_container *b, int *count);
-void	pb(t_container *a, t_container *b, int *count);
-void	sa(t_container *container, int *count);
-void	sb(t_container *container, int *count);
-void	ss(t_container *a, t_container *b, int *count);
-void	ra(t_container *a, int *count);
-void	rb(t_container *b, int *count);
-void	rr(t_container *a, t_container *b, int *count);
-void	rra(t_container *a, int *count);
-void	rrb(t_container *b, int *count);
-void	rrr(t_container *a, t_container *b, int *count);
+void	pa(t_container *a, t_container *b);
+void	pb(t_container *a, t_container *b);
+void	sa(t_container *container);
+void	sb(t_container *container);
+void	ss(t_container *a, t_container *b);
+void	ra(t_container *a);
+void	rb(t_container *b);
+void	rr(t_container *a, t_container *b);
+void	rra(t_container *a);
+void	rrb(t_container *b);
+void	rrr(t_container *a, t_container *b);
 
 /*
 **	functions for sorting
 */
-void	sort_two_a(t_container *a, int *count);
-void	sort_two_b(t_container *a, t_container *b, int *count);
+void	sort_two_a(t_container *a);
+void	sort_two_b(t_container *a, t_container *b);
 
-void	sort_just_three_a(t_container *a, int *count);
-void	sort_just_three_b(t_container *a, t_container *b, int *count);
+void	sort_just_three_a(t_container *a);
+void	sort_just_three_b(t_container *a, t_container *b);
 
-void	sort_top_three_a(t_container *a, int *count);
-void	sort_top_three_b(t_container *a, t_container *b, int *count);
+void	sort_top_three_a(t_container *a);
+void	sort_top_three_b(t_container *a, t_container *b);
 
-void	sort_four_a(t_container *a, t_container	*b, int *count);
-void	sort_four_b(t_container *a, t_container	*b, int *count);
+void	sort_four_a(t_container *a, t_container	*b);
+void	sort_four_b(t_container *a, t_container	*b);
 
-void	sort_five_a(t_container *a, t_container *b, int *count);
-void	sort_five_b(t_container *a, t_container *b, int *count);
+void	sort_five_a(t_container *a, t_container *b);
+void	sort_five_b(t_container *a, t_container *b);
 
 void	find_two_pivot(t_container *container, int leng, int *pivot);
-void	quick_a(t_container *a, t_container *b, int *count, int leng);
-void	quick_b(t_container *a, t_container *b, int *count, int leng);
+void	quick_a(t_container *a, t_container *b, int leng);
+void	quick_b(t_container *a, t_container *b, int leng);
 
 #endif

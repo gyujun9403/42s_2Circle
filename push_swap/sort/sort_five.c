@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:57:55 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 21:57:56 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:08:07 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	find_pivot_a(t_container *container)
 	return (temp_arr[3]);
 }
 
-void	sort_five_a(t_container *a, t_container	*b, int *count)
+void	sort_five_a(t_container *a, t_container	*b)
 {
 	int	i;
 	int	pivot;
@@ -51,20 +51,20 @@ void	sort_five_a(t_container *a, t_container	*b, int *count)
 	while (i++ < 5)
 	{
 		if (a->end->data >= pivot)
-			ra(a, count);
+			ra(a);
 		else
-			pb(a, b, count);
+			pb(a, b);
 	}
 	if (a->leng != 2)
 	{
-		rra(a, count);
-		rra(a, count);
+		rra(a);
+		rra(a);
 	}
-	sort_two_a(a, count);
+	sort_two_a(a);
 	if (b->leng == 3)
-		sort_just_three_b(a, b, count);
+		sort_just_three_b(a, b);
 	else
-		sort_top_three_b(a, b, count);
+		sort_top_three_b(a, b);
 }
 
 int	find_pivot_b(t_container *container)
@@ -96,7 +96,7 @@ int	find_pivot_b(t_container *container)
 	return (temp_arr[1]);
 }
 
-void	sort_five_b(t_container *a, t_container *b, int *count)
+void	sort_five_b(t_container *a, t_container *b)
 {
 	int	i;
 	int	pivot;
@@ -106,18 +106,18 @@ void	sort_five_b(t_container *a, t_container *b, int *count)
 	while (i++ < 5)
 	{
 		if (b->end->data <= pivot)
-			rb(b, count);
+			rb(b);
 		else
-			pa(a, b, count);
+			pa(a, b);
 	}
 	if (b->leng != 2)
 	{
-		rrb(b, count);
-		rrb(b, count);
+		rrb(b);
+		rrb(b);
 	}
 	if (a->leng == 3)
-		sort_just_three_a(a, count);
+		sort_just_three_a(a);
 	else
-		sort_top_three_a(a, count);
-	sort_two_b(a, b, count);
+		sort_top_three_a(a);
+	sort_two_b(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:49:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 22:11:25 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:02:06 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,14 @@ void	push_other_to_this(t_container *other, t_container *this)
 	++this->leng;
 }
 
-void	pa(t_container *container_a, t_container *container_b, int *count)
+void	pa(t_container *container_a, t_container *container_b)
 {
 	push_other_to_this(container_b, container_a);
-	++(*count);
 	write(1, "pa\n", 3);
 }
 
-void	pb(t_container *container_a, t_container *container_b, int *count)
+void	pb(t_container *container_a, t_container *container_b)
 {
 	push_other_to_this(container_a, container_b);
-	++(*count);
 	write(1, "pb\n", 3);
 }

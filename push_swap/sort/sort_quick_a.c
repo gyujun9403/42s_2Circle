@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 21:58:03 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/02 22:56:22 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/06 11:14:51 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,24 @@ void	find_two_pivot(t_container *container, int leng, int *pivot)
 	free(temp_arr);
 }
 
-int	check_return_a(t_container *a, t_container *b, int *count, int leng)
+int	check_return_a(t_container *a, t_container *b, int leng)
 {
 	if (leng <= 5)
 	{
 		if (leng < 2)
 			;
 		else if (leng == 2)
-			sort_two_a(a, count);
+			sort_two_a(a);
 		else if (leng == 3 && a->leng == 3)
-			sort_just_three_a(a, count);
+			sort_just_three_a(a);
 		else if (leng == 3)
-			sort_top_three_a(a, count);
+			sort_top_three_a(a);
 		else if (a_is_sorted(a, leng) == TRUE)
 			;
 		else if (leng == 4)
-			sort_four_a(a, b, count);
+			sort_four_a(a, b);
 		else if (leng == 5)
-			sort_five_a(a, b, count);
+			sort_five_a(a, b);
 		return (TRUE);
 	}
 	else
@@ -69,7 +69,7 @@ int	check_return_a(t_container *a, t_container *b, int *count, int leng)
 ** pbrb	-> leng * 2 / 3 - leng / 3
 ** pb	-> leng / 3
 */
-void	divide_chunk_a(t_container *a, t_container *b, int *count, int leng)
+void	divide_chunk_a(t_container *a, t_container *b, int leng)
 {
 	int	i;
 	int	pivot[2];
@@ -79,34 +79,31 @@ void	divide_chunk_a(t_container *a, t_container *b, int *count, int leng)
 	while (i++ < leng)
 	{
 		if (a->end->data >= pivot[1])
-			ra(a, count);
+			ra(a);
 		else
 		{
 			if (a->end->data >= pivot[0])
 			{
-				pb(a, b, count);
-				rb(b, count);
+				pb(a, b);
+				rb(b);
 			}
 			else
-				pb(a, b, count);
+				pb(a, b);
 		}
 	}
 	i = 0;
 	while (i++ < find_smaller(leng - leng * 2 / 3, leng * 2 / 3 - leng / 3))
-		rrr(a, b, count);
+		rrr(a, b);
 	while (i++ < leng - leng * 2 / 3 + 1)
-		rra(a, count);
+		rra(a);
 }
 
-void	quick_a(t_container *a, t_container *b, int *count, int leng)
+void	quick_a(t_container *a, t_container *b, int leng)
 {
-	int	i;
-
-	if (check_return_a(a, b, count, leng) == TRUE)
+	if (check_return_a(a, b, leng) == TRUE)
 		return ;
-	i = 0;
-	divide_chunk_a(a, b, count, leng);
-	quick_a(a, b, count, leng - leng * 2 / 3);
-	quick_b(a, b, count, leng * 2 / 3 - leng / 3);
-	quick_b(a, b, count, leng / 3);
+	divide_chunk_a(a, b, leng);
+	quick_a(a, b, leng - leng * 2 / 3);
+	quick_b(a, b, leng * 2 / 3 - leng / 3);
+	quick_b(a, b, leng / 3);
 }
