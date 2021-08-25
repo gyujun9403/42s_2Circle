@@ -1,9 +1,11 @@
 a.out
 a.out.dSYM
+handle_error.c
+handle_input.c
 infile
 libft
 main.c
 oufile
-outfile
 outfile 2
 pipex.h
+utils.c
