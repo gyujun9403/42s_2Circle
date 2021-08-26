@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:21:58 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/25 17:23:17 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/26 17:02:54 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define TRUE 1
 # define FALSE 0
+# define PIPE_BUFFER_SIZE 1024
 
 char	**make_cmds(int ac, char **av, char **env);
 void	prt_occured_error(char *str);
