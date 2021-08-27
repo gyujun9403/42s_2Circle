@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/26 17:33:05 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/27 01:14:25 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int	main(int ac, char **av, char **env)
 		// }
 
 		char **temp;
-		temp = ft_calloc(3, sizeof(char *));
-		temp[0] = "a1";
-		temp[1] = "infile";
-		temp[2] = NULL;
-		execve("/usr/bin/grep", temp, NULL);
+		temp = ft_calloc(4, sizeof(char *));
+		temp[0] = "/bin/ls";
+		temp[1] = "-al";
+		temp[2] = "../";
+		//temp[1] = "./infile";
+		temp[3] = NULL;
+		execve(temp[0], temp, NULL);
 		close(fd);
 		free(temp);
 	}
