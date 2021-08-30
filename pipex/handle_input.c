@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:33:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/27 17:45:48 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/30 15:16:46 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	**find_path(char **env)
 
 // env_path를 받고, 없는 명령어가 있다면 전부 free하고 NULL반환,
 // 있으면 char**형태의 입력명령들의 경로를 저장한다. 그리고 env_path를 free한다. 
+// -> 위의 함수를 통합해서 리스트 자체를 받고, 찾은 path랑 바로 합쳐서 list의 첫 자리에 저장하고 그전의 것들은 free하게 재설정.
 char	*check_cmd(char **path, char *cmd)
 {
 	char	*temp;
@@ -99,7 +100,21 @@ int	make_cmds(int ac, char **av, char **env, t_container *cont)
 	// 이후 명령어 유효성 확인 후 다음게 옵션을 다음 문자열로 추가한다. 
 	// 	-> 동적크기할당은... 일단 개수를 카운트하고 해야할듯.
 	// 지정된 숫자 만큰 옵션 문자열 끝에 NULL을 추가하고, 다음 리스트를 추가한다.
+	int	i;
+	int	cnt_option;
+	t_list	*temp;
+	
 	if (access(av[1], F_OK | R_OK) != 0)
-		return FALSE;
-	cont
+		return (FALSE);
+	cont->file = av[1];
+	i = 0;
+	cnt_option = 0;
+	cont->list = make_list(ac - 2);
+	if (cont->list == NULL)
+		return (FALSE);
+	while (i + 2 < ac)
+	{
+		temp = index_of_list(cont->list, i);
+		temp->content = make_cmd_set(av[i + 2]);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/27 01:14:25 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/30 14:23:50 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char **av, char **env)
 	int	i;
 	int pid;
 	char buff[PIPE_BUFFER_SIZE];
+	t_container cont;
 
 	//if (ac < 2)
 	if (ac != 3)
@@ -32,7 +33,7 @@ int	main(int ac, char **av, char **env)
 	else
 	{
 		i = 0;
-		temp_strs = make_cmds(ac, av, env);
+		temp_strs = make_cmds(ac, av, env, &cont);
 		//pipe(files);
 		//pid = fork();
 		// if (pid != 0) // 부모

@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:21:58 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/27 17:41:36 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/30 15:01:32 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef	struct	s_container
 }	t_container;
 
 // char	**make_cmds(int ac, char **av, char **env);
-int		make_cmds(int ac, char **av, char **env, t_container cont);
+int		make_cmds(int ac, char **av, char **env, t_container *cont);
 void	prt_occured_error(char *str);
 void	free_strs(char **strs);
 void	prt_command_not_found(char *str);
+t_list	*make_list(int num);
 
 #endif
