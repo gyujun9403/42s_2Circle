@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/30 14:23:50 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/08/31 02:02:51 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 int	main(int ac, char **av, char **env)
 {
 	char *file;
-	char **temp_strs;
 	int fd;
 	int files[2];
 	int	i;
 	int pid;
-	char buff[PIPE_BUFFER_SIZE];
 	t_container cont;
 
-	//if (ac < 2)
-	if (ac != 3)
+	if (ac != 5)
 		return -1;	
 	file = av[1];
 	fd = open(file, O_RDONLY);
@@ -32,29 +29,19 @@ int	main(int ac, char **av, char **env)
 		prt_occured_error(file);
 	else
 	{
-		i = 0;
-		temp_strs = make_cmds(ac, av, env, &cont);
-		//pipe(files);
-		//pid = fork();
-		// if (pid != 0) // 부모
-		// {
-			
-		// }
-		// else
-		// {
-			 
-		// }
-
-		char **temp;
-		temp = ft_calloc(4, sizeof(char *));
-		temp[0] = "/bin/ls";
-		temp[1] = "-al";
-		temp[2] = "../";
-		//temp[1] = "./infile";
-		temp[3] = NULL;
-		execve(temp[0], temp, NULL);
-		close(fd);
-		free(temp);
+		if (make_cmds(ac, av, env, &cont) == FALSE)
+			return (-1);
+		t_path_list *temp;
+		int i = 0;
+		temp = cont.list;
+		while (temp == NULL)
+		{
+			printf("-----------------\n");
+			while (temp->cmds[i] == NULL)
+				printf("%s\n", temp->cmds[i++ - 1]);
+			temp = temp->next;
+		}
+		free_lists(cont.list);
 	}
 	return (0);
 }
