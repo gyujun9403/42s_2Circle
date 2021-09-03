@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:33:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/31 02:12:24 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/03 14:49:01 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,18 @@ int	make_cmds(int ac, char **av, char **env, t_container *cont)
 	t_path_list	*temp;
 	char*	*path;
 	
-	cont->file = av[1];
 	i = 0;
-	cont->list = make_list(ac - 2);
+	cont->cnt_cmds = ac - 3;
+	cont->list = make_list(ac - 3);
 	if (cont->list == NULL)
 		return (FALSE);
 	path = find_path(env);
-	while (i + 2 < ac)
+	while (i + 3 < ac)
 	{
 		temp = index_of_list(cont->list, i);
-		temp->cmds = make_cmd_set(av[i + 1]);
+		temp->cmds = make_cmd_set(av[i + 2]);
 		if (temp->cmds == NULL)
-			return (FALSE);
+			return (free_lists(cont->list));
 		if(make_cmd(path, temp->cmds) == FALSE)
 		{
 			prt_command_not_found(temp->cmds[0]);
@@ -94,5 +94,20 @@ int	make_cmds(int ac, char **av, char **env, t_container *cont)
 		i++;
 	}
 	free(path);
+	return (TRUE);
+}
+
+int	check_files(int ac, char **av)
+{
+	if (access(av[1], R_OK) == -1)
+	{
+		prt_file_permission_deny(av[0]);
+		return (FALSE);
+	}
+	if (access(av[ac - 1], W_OK) == -1)
+	{
+		prt_file_permission_deny(av[ac - 1]);
+		return (FALSE);
+	}
 	return (TRUE);
 }

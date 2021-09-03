@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:36:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/08/31 02:11:52 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/03 17:10:48 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ t_path_list	*make_list(int num)
 	if (list_start == NULL)
 		return (NULL);
 	list_ptr = list_start;
-	while (i++ < num)
+	while (i++ + 1 < num)
 	{
 		list_ptr->next = malloc(sizeof(t_path_list));
-		list_ptr = list_ptr->next;
-		if (list_ptr == NULL)
+		if (list_ptr->next == NULL)
+		{
+			free_lists(list_start);
 			return (NULL);
+		}
+		list_ptr = list_ptr->next;	
 	}
 	list_ptr->next = NULL;
 	return (list_start);
@@ -41,8 +44,7 @@ char	**make_cmd_set(char* cmd)
 	cmd_set = ft_split(cmd, ' ');
 	if (cmd_set == NULL)
 		return (NULL);
-	//if (access(cmd_set[0], X_OK | R_OK) == -1)
-	//	return (NULL);
+	cmd_set = check_inner_string(cmd_set);
 	return (cmd_set);
 }
 
@@ -60,9 +62,9 @@ int	free_lists(t_path_list *list_start)
 {
 	int i;
 
-	i = 0;
-	while (list_start == NULL)
+	while (list_start != NULL)
 	{
+		i = 0;
 		while ((list_start->cmds)[i++] != NULL)
 			free((list_start->cmds)[i - 1]);
 		free(list_start->cmds);
