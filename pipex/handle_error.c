@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:38:19 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/03 14:28:15 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/05 21:48:07 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	prt_occured_error(char *str)
 {
 	char	*temp_str;
-	int	str_len;
+	int		str_len;
 
 	str_len = ft_strlen(str);
 	temp_str = ft_calloc(str_len + 7, sizeof(char));
@@ -28,7 +28,7 @@ void	prt_occured_error(char *str)
 void	prt_command_not_found(char *str)
 {
 	char	*temp_str;
-	int	str_len;
+	int		str_len;
 
 	str_len = ft_strlen(str);
 	temp_str = ft_calloc(str_len + 28, sizeof(char));
@@ -42,7 +42,7 @@ void	prt_command_not_found(char *str)
 void	prt_file_permission_deny(char *str)
 {
 	char	*temp_str;
-	int	str_len;
+	int		str_len;
 
 	str_len = ft_strlen(str);
 	temp_str = ft_calloc(str_len + 28, sizeof(char));
