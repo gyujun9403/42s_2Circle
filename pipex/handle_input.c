@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:33:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/05 21:51:22 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/06 15:07:18 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,23 @@ int	make_cmds(int ac, char **av, char **env, t_container *cont)
 
 int	check_files(int ac, char **av)
 {
-	if (access(av[1], R_OK) == -1)
+	int result;
+	
+	result = TRUE;
+	if (access(av[1], F_OK) == -1)
 	{
-		prt_file_permission_deny(av[0]);
-		return (FALSE);
+		prt_no_such_file(av[1]);
+		result = FALSE;
+	}
+	else if (access(av[1], R_OK) == -1)
+	{
+		prt_file_permission_deny(av[1]);
+		result = FALSE;
 	}
 	if (access(av[ac - 1], W_OK) == -1)
 	{
 		prt_file_permission_deny(av[ac - 1]);
-		return (FALSE);
+		result = FALSE;
 	}
-	return (TRUE);
+	return (result);
 }

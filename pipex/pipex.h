@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:21:58 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/03 17:27:37 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/06 14:41:23 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	prt_occured_error(char *str);
 int	free_lists(t_path_list *list_start);
 void	prt_command_not_found(char *str);
 void	prt_file_permission_deny(char *str);
+void	prt_no_such_file(char *str);
 t_path_list	*make_list(int num);
 t_path_list	*index_of_list(t_path_list *list_start, int index);
 char	**make_cmd_set(char* cmd);
