@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/05 21:51:38 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/06 18:17:54 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int ac, char **av, char **env)
 				printf("%s\n", temp->cmds[i++]);
 			temp = temp->next;
 		}
+
+		
 		free_lists(cont.list);
 		close(fd);
 	}
