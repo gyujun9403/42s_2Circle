@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:21:58 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/06 14:41:23 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/08 17:03:33 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef	struct	s_container
 }	t_container;
 
 // char	**make_cmds(int ac, char **av, char **env);
-int		make_cmds(int ac, char **av, char **env, t_container *cont);
+//int		make_cmds(int ac, char **av, char **env, t_container *cont);
 void	prt_occured_error(char *str);
 int	free_lists(t_path_list *list_start);
 void	prt_command_not_found(char *str);
@@ -50,6 +50,7 @@ t_path_list	*index_of_list(t_path_list *list_start, int index);
 char	**make_cmd_set(char* cmd);
 int	check_files(int ac, char **av);
 char	**check_inner_string(char **cmd_set);
-
+char	**find_path(char **env);
+int	make_cmd(char **path, char **cmd_set);
 
 #endif

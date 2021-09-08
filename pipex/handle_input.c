@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:33:54 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/06 15:07:18 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/08 17:04:10 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,36 @@ int	make_cmd(char **path, char **cmd_set)
 	return (FALSE);
 }
 
-int	make_cmds(int ac, char **av, char **env, t_container *cont)
+//int	make_cmds(int ac, char **av, char **env, t_container *cont)
+char	**make_cmds(char *cmd_chunk)
 {
-	int			i;
-	t_path_list	*temp;
-	char		**path;
+	//int			i;
+	//t_path_list	*temp;
+	//char		**path;
+	char **result;
 
-	i = 0;
-	cont->cnt_cmds = ac - 3;
-	cont->list = make_list(ac - 3);
-	if (cont->list == NULL)
-		return (FALSE);
-	path = find_path(env);
-	while (i + 3 < ac)
-	{
-		temp = index_of_list(cont->list, i);
-		temp->cmds = make_cmd_set(av[i + 2]);
-		if (temp->cmds == NULL)
-			return (free_lists(cont->list));
-		if (make_cmd(path, temp->cmds) == FALSE)
-		{
-			prt_command_not_found(temp->cmds[0]);
-			return (free_lists(cont->list));
-		}
-		i++;
-	}
-	free(path);
-	return (TRUE);
+	//i = 0;
+	//cont->cnt_cmds = ac - 3;
+	//cont->list = make_list(ac - 3);
+	//if (cont->list == NULL)
+	//	return (FALSE);
+	//path = find_path(env);
+	// while (i + 3 < ac)
+	// {
+		//temp = index_of_list(cont->list, i);
+		//temp->cmds = make_cmd_set(av[i + 2]);
+		//if (temp->cmds == NULL)
+		//	return (free_lists(cont->list));
+		// if (make_cmd(path, temp->cmds) == FALSE)
+		// {
+		// 	prt_command_not_found(temp->cmds[0]);
+		// 	return (free_lists(cont->list));
+		// }
+	// 	i++;
+	// }
+	//free(path);
+	//result = make_cmd_set(cmd_chunk);
+	return (NULL);
 }
 
 int	check_files(int ac, char **av)
