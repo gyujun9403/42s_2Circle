@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   handle_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/05 19:42:52 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 00:22:23 by gyeon            ###   ########.fr       */
+/*   Created: 2021/09/10 23:54:43 by gyeon             #+#    #+#             */
+/*   Updated: 2021/09/11 00:22:20 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-int	free_arrs(char **arrs)
+void	openfile_and_dup(char *file, int mode)
 {
-	int	i;
+	int result;
 
-	i = 0;
-	while (arrs[i] != NULL)
+	result = open(file, mode);
+	if (result == -1)
 	{
-		free(arrs[i]);
-		++i;
+		perror(file);
+		exit(1);
 	}
-	free(arrs);
-	return (FALSE);
+	if (mode == O_RDONLY)
+	{
+		if (dup2(result, STDIN_FILENO) == -1)
+			exit(1);
+	}
+	else
+	{
+		if (dup2(result, STDOUT_FILENO) == -1)
+			exit(1);
+	}
+	close(result);
 }

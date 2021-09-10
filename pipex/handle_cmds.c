@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:31:03 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/05 21:47:35 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/10 23:55:42 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ char	**check_inner_string(char **cmd_set)
 			return (dump_new_string(cmd_set, st, end));
 		}
 		i++;
+	}
+	return (cmd_set);
+}
+
+char	**check_and_set_cmds(char **path, char *cmd_chunk)
+{
+	char	**cmd_set;
+
+	cmd_set = make_cmd_set(cmd_chunk);
+	if (make_cmd(path, cmd_set) == FALSE)
+	{
+		prt_command_not_found(cmd_set[0]);
+		exit(1);
 	}
 	return (cmd_set);
 }
