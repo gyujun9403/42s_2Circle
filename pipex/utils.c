@@ -6,12 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:42:52 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 00:22:23 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/11 14:12:08 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 
 int	free_arrs(char **arrs)
 {
@@ -25,4 +24,27 @@ int	free_arrs(char **arrs)
 	}
 	free(arrs);
 	return (FALSE);
+}
+
+int	cmds_len(char **cmds)
+{
+	int	i;
+
+	i = 0;
+	while (cmds[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	find_char(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != c)
+		i++;
+	if (str[i] != '\0')
+		return (i);
+	else
+		return (-1);
 }
