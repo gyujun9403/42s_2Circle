@@ -1,4 +1,5 @@
 *.out
+a.out
 *test*
 *.o
 checker*
@@ -6,3 +7,8 @@ checker*
 temp/
 workspace*
 *dSYM/
+outfile*
+out
+infile*
+infile
+
