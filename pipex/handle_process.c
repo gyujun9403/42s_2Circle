@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 00:25:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/12 00:13:18 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/12 12:12:49 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	just_redirection(char **av, char **env)
 		return ;
 	path = find_path(env);
 	openfile_and_dup(av[1], O_RDONLY);
-	openfile_and_dup(av[3], O_WRONLY);
+	openfile_and_dup(av[3], O_WRONLY | O_TRUNC | O_CREAT);
 	cmd_set = check_and_set_cmds(path, av[2]);
 	execve(cmd_set[0], cmd_set, env);
 	exit(1);
@@ -47,7 +47,7 @@ void	first_child_process(t_pinfo *pinfo, char *cmd_chunk)
 	char	**cmd_set;
 
 	waitpid(pinfo->child_pid, &stat_loc, 0);
-	openfile_and_dup(pinfo->outfile, O_WRONLY);
+	openfile_and_dup(pinfo->outfile, O_WRONLY | O_TRUNC | O_CREAT);
 	cmd_set = check_and_set_cmds(pinfo->path, cmd_chunk);
 	if (WEXITSTATUS(stat_loc) != 0)
 		exit(1);
@@ -79,7 +79,6 @@ void	shell_process(t_pinfo *pinfo)
 	int	stat_loc;
 
 	waitpid(pinfo->child_pid, &stat_loc, 0);
-	// 안닫힌거 다 close해줘야함
 	i = 1;
 	close(pinfo->fds[0][0]);
 	close(pinfo->fds[0][1]);
