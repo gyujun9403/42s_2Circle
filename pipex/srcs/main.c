@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 23:45:51 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/14 15:48:57 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_pinfo(t_pinfo *pinfo, int ac, char **av, char **env)
 
 	pinfo->num = 0;
 	pinfo->num_fds = ac - 3;
+	pinfo->env = env;
 	pinfo->path = find_path(env);
 	pinfo->infile = av[1];
 	pinfo->outfile = av[ac - 1];

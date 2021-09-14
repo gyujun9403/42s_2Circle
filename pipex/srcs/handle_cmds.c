@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:31:03 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 23:18:39 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/14 15:44:54 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	**check_inner_string(char **cmd_set)
 			st = i;
 			while (cmd_set[i++] != NULL && end == 0)
 				if (find_char(cmd_set[i - 1], '\'') + 1
-					== ft_strlen(cmd_set[i - 1]))
+					== (int)ft_strlen(cmd_set[i - 1]))
 					end = i - 1;
 			if (end == 0)
 				end = i - 1;
@@ -107,7 +107,7 @@ char	**check_inner_string(char **cmd_set)
 	return (cmd_set);
 }
 
-char	**check_and_set_cmds(char **path, char *cmd_chunk)
+char	**check_and_set_cmds(t_pinfo *pinfo, char *cmd_chunk)
 {
 	char	**cmd_set;
 
@@ -119,15 +119,14 @@ char	**check_and_set_cmds(char **path, char *cmd_chunk)
 		if (access(cmd_set[0], F_OK | X_OK) == -1)
 		{
 			prt_command_not_found(cmd_set[0]);
-			free_arrs(cmd_set);
-			return (NULL);
+			exit(127);
 		}
 		return (cmd_set);
 	}
-	if (make_cmd(path, cmd_set) == FALSE)
+	if (make_cmd(pinfo->path, cmd_set) == FALSE)
 	{
 		prt_command_not_found(cmd_set[0]);
-		exit(1);
+		exit(127);
 	}
 	return (cmd_set);
 }

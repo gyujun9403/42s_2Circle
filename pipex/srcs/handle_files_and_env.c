@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 23:54:43 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 23:16:55 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/13 23:57:22 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	**find_path(char **env)
 	char	*temp;
 
 	i = 0;
+	env_path = NULL;
 	while (env[i] != NULL)
 	{
 		if (ft_strnstr(env[i++], "PATH=", 6) != NULL)
