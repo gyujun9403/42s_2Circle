@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/14 15:48:57 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/15 15:09:48 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av, char **env)
 	t_pinfo	pinfo;
 
 	if (ac < 4)
-		return (0);
+		exit (1);
 	else if (ac == 4)
 		just_redirection(av, env);
 	init_pinfo(&pinfo, ac, av, env);

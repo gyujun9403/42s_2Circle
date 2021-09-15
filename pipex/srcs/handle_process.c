@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 00:25:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/14 16:04:40 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/15 16:08:32 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	just_redirection(char **av, char **env)
 	pid = fork();
 	if (pid != 0)
 	{
-		waitpid(pid, &stat_loc, WNOHANG);
+		waitpid(pid, &stat_loc, 0);
 		if (WEXITSTATUS(stat_loc) != 0)
 			exit(WEXITSTATUS(stat_loc));
-		if (errno != 0)
-			exit(1);
+		printf("hi\n");
 		exit(0);
 	}
 	pinfo.path = find_path(env);
@@ -47,7 +46,7 @@ void	last_child_process(t_pinfo *pinfo, char *cmd_chunk)
 	openfile_and_dup(pinfo->infile, O_RDONLY);
 	cmd_set = check_and_set_cmds(pinfo, cmd_chunk);
 	dup2(pinfo->fds[pinfo->num - 1][1], STDOUT_FILENO);
-	if(execve(cmd_set[0], cmd_set, pinfo->env) == -1)
+	if (execve(cmd_set[0], cmd_set, pinfo->env) == -1)
 	{
 		free_arrs(cmd_set);
 		exit(1);
@@ -64,7 +63,7 @@ void	first_child_process(t_pinfo *pinfo, char *cmd_chunk)
 	cmd_set = check_and_set_cmds(pinfo, cmd_chunk);
 	close(pinfo->fds[pinfo->num][1]);
 	dup2(pinfo->fds[pinfo->num][0], STDIN_FILENO);
-	if(execve(cmd_set[0], cmd_set, pinfo->env) == -1)
+	if (execve(cmd_set[0], cmd_set, pinfo->env) == -1)
 	{
 		free_arrs(cmd_set);
 		exit(1);
@@ -81,7 +80,7 @@ void	child_processes(t_pinfo *pinfo, char *cmd_chunk)
 	close(pinfo->fds[pinfo->num][1]);
 	dup2(pinfo->fds[pinfo->num][0], STDIN_FILENO);
 	dup2(pinfo->fds[pinfo->num - 1][1], STDOUT_FILENO);
-	if(execve(cmd_set[0], cmd_set, pinfo->env) == -1)
+	if (execve(cmd_set[0], cmd_set, pinfo->env) == -1)
 	{
 		free_arrs(cmd_set);
 		exit(1);
@@ -93,7 +92,7 @@ void	shell_process(t_pinfo *pinfo)
 	int	i;
 	int	stat_loc;
 
-	waitpid(pinfo->child_pid, &stat_loc, WNOHANG);
+	waitpid(pinfo->child_pid, &stat_loc, 0);
 	i = 1;
 	close(pinfo->fds[0][0]);
 	close(pinfo->fds[0][1]);
