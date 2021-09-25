@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:21:58 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/15 16:45:32 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/25 15:01:16 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -47,4 +47,5 @@ void	shell_process(t_pinfo *pinfo);
 int		free_arrs(char **arrs);
 int		cmds_len(char **cmds);
 int		find_char(char *str, char c);
+char	**dump_new_string(char **cmd_set, int st, int end);
 #endif

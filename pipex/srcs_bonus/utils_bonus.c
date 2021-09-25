@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:42:52 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/23 15:24:12 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/25 14:59:28 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../header_bonus/pipex_bonus.h"
 
 int	free_arrs(char **arrs)
 {

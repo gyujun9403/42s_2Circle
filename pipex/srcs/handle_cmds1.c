@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_cmds_bonus.c                                :+:      :+:    :+:   */
+/*   handle_cmds1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:31:03 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/23 15:23:32 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/25 14:28:27 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../header/pipex.h"
 
 char	**make_cmd_set(char *cmd)
 {
@@ -50,37 +50,6 @@ int	make_cmd(char **path, char **cmd_set)
 	return (FALSE);
 }
 
-/*
-** 
-*/
-char	**dump_new_string(char **cmd_set, int st, int end)
-{
-	char	*space;
-	char	**result;
-	int		i;
-
-	i = 0;
-	result = ft_calloc(cmds_len(cmd_set) + end - st + 2, sizeof(char **));
-	while (i < st)
-	{
-		result[i] = cmd_set[i];
-		++i;
-	}
-	result[st] = ft_strjoin(result[st], cmd_set[i++]);
-	while (i <= end)
-	{
-		space = (char *)malloc(2);
-		space[0] = ' ';
-		space[1] = '\0';
-		result[st] = ft_strjoin(result[st], space);
-		result[st] = ft_strjoin(result[st], cmd_set[i]);
-		++i;
-	}
-	while (cmd_set[i++] != NULL)
-		result[st + i - end - 1] = cmd_set[i - 1];
-	return (result);
-}
-
 char	**check_inner_string(char **cmd_set)
 {
 	int	i;
@@ -91,18 +60,21 @@ char	**check_inner_string(char **cmd_set)
 	end = 0;
 	while (cmd_set[i] != NULL)
 	{
-		if (cmd_set[i][0] == '\'')
+		if (cmd_set[i++][0] == '\'')
 		{
-			st = i;
-			while (cmd_set[i++] != NULL && end == 0)
-				if (find_char(cmd_set[i - 1], '\'') + 1
-					== (int)ft_strlen(cmd_set[i - 1]))
-					end = i - 1;
+			st = --i;
+			if (find_char(&cmd_set[st][1], '\'') + 2
+				== (int)ft_strlen(cmd_set[st]))
+				end = st;
+			else
+				while (cmd_set[i++] != NULL && end == 0)
+					if (find_char(cmd_set[i - 1], '\'') + 1
+						== (int)ft_strlen(cmd_set[i - 1]))
+						end = i - 1;
 			if (end == 0)
 				end = i - 1;
 			return (dump_new_string(cmd_set, st, end));
 		}
-		i++;
 	}
 	return (cmd_set);
 }

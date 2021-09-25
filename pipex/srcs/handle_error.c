@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:38:19 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/11 23:01:06 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/24 20:27:35 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../header/pipex.h"
 
 void	prt_command_not_found(char *str)
 {
@@ -18,10 +18,10 @@ void	prt_command_not_found(char *str)
 	int		str_len;
 
 	str_len = ft_strlen(str);
-	temp_str = ft_calloc(str_len + 28, sizeof(char));
-	ft_strlcat(temp_str, "bash: ", 7);
-	ft_strlcat(temp_str, str, 7 + str_len);
-	ft_strlcat(temp_str, ": command not found\n", 28 + str_len);
+	temp_str = ft_calloc(str_len + 29, sizeof(char));
+	ft_strlcat(temp_str, "gyeon: ", 8);
+	ft_strlcat(temp_str, str, 8 + str_len);
+	ft_strlcat(temp_str, ": command not found\n", 29 + str_len);
 	ft_putstr_fd(temp_str, STDERR_FILENO);
 	free(temp_str);
 }

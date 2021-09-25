@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 13:34:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/15 15:09:48 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/24 20:27:49 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../header/pipex.h"
 
 void	init_pinfo(t_pinfo *pinfo, int ac, char **av, char **env)
 {
@@ -45,9 +45,12 @@ int	main(int ac, char **av, char **env)
 	init_pinfo(&pinfo, ac, av, env);
 	while (pinfo.num + 3 < ac)
 	{
-		pipe(pinfo.fds[pinfo.num]);
+		if (pipe(pinfo.fds[pinfo.num]) == -1)
+			return (1);
 		pinfo.child_pid = fork();
-		if (pinfo.child_pid != 0)
+		if (pinfo.child_pid == -1)
+			return (1);
+		else if (pinfo.child_pid != 0)
 			break ;
 		++pinfo.num;
 	}
@@ -57,7 +60,5 @@ int	main(int ac, char **av, char **env)
 		first_child_process(&pinfo, av[ac - 2]);
 	else if (pinfo.num == 0)
 		shell_process(&pinfo);
-	else
-		child_processes(&pinfo, av[ac - pinfo.num - 1]);
-	return (0);
+	child_processes(&pinfo, av[ac - pinfo.num - 1]);
 }

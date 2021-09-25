@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 23:54:43 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/13 23:57:22 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/24 20:27:39 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../header/pipex.h"
 
 void	openfile_and_dup(char *file, int mode)
 {

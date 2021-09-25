@@ -6,7 +6,7 @@
 #    By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 22:39:13 by gyeon             #+#    #+#              #
-#    Updated: 2021/09/23 15:38:58 by gyeon            ###   ########.fr        #
+#    Updated: 2021/09/25 15:00:44 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@ DIR_SRC_BONUS = ./srcs_bonus/
 DIR_header = ./header
 DIR_header_BONUS = ./header_bonus
 DIR_LIBFT = ./libft/
-SRC = handle_cmds.c \
+SRC = handle_cmds1.c \
+	handle_cmds2.c \
 	handle_error.c \
 	handle_files_and_env.c \
 	handle_process.c \
 	utils.c \
 	main.c
-SRC_BONUS = handle_cmds_bonus.c \
+SRC_BONUS = handle_cmds1_bonus.c \
+	handle_cmds2_bonus.c \
 	handle_error_bonus.c \
 	handle_files_and_env_bonus.c \
 	handle_process_bonus.c \
@@ -46,8 +48,8 @@ bonus : $(addprefix $(DIR_SRC_BONUS), $(OBJ_BONUS)) $(addprefix $(DIR_LIBFT), $(
 $(addprefix $(DIR_LIBFT), $(LIBFT)) : 
 	@make -C $(DIR_LIBFT) all;
 clean : 
-	@rm -f $(addprefix $(DIR_SRC), $(OBJ)) $(addprefix $(DIR_LIBFT), $(LIBFT)) $(addprefix $(DIR_SRC_BONUS), $(OBJ_BONUS))
+	@rm -f $(addprefix $(DIR_SRC), $(OBJ)) $(addprefix $(DIR_LIBFT), *.o) $(addprefix $(DIR_SRC_BONUS), $(OBJ_BONUS))
 fclean : 
-	@rm -f $(TARGET)
+	@rm -f $(TARGET) $(addprefix $(DIR_LIBFT), $(LIBFT))
 re : clean fclean all
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re

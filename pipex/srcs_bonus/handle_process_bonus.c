@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 00:25:02 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/23 15:23:49 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/25 14:59:33 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../header_bonus/pipex_bonus.h"
 
 void	just_redirection(char **av, char **env)
 {
@@ -100,4 +100,6 @@ void	shell_process(t_pinfo *pinfo)
 		close(pinfo->fds[i++][0]);
 	if (WEXITSTATUS(stat_loc) != 0)
 		exit(WEXITSTATUS(stat_loc));
+	else
+		exit(0);
 }

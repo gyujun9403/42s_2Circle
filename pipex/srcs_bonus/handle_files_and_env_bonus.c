@@ -6,11 +6,11 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 23:54:43 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/23 15:23:38 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/09/25 14:59:37 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../header_bonus/pipex_bonus.h"
 
 void	openfile_and_dup(char *file, int mode)
 {
