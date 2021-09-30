@@ -6,13 +6,13 @@
 #    By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 14:08:10 by gyeon             #+#    #+#              #
-#    Updated: 2021/09/28 17:26:19 by gyeon            ###   ########.fr        #
+#    Updated: 2021/09/30 11:40:41 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
 FLAGS = -Wall -Wextra -Werror
-FLAGS_MLX = -L $(DIR_MLX) -lmlx -framework OpenGL
+FLAGS_MLX = -L $(DIR_MLX) -lmlx -framework OpenGL -framework Appkit
 DIR_MLX = ./minilibx_opengl_20191021
 TARGET = so_long
 DIR_SRCS = ./srcs/
