@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/02 15:32:03 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:26:17 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,27 @@
 # define MAP "../map/map.bar"
 # define TILE_ASSET "../img/50*50tile.png"
 
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-// typedef struct s_data_map
-// {
-// 	char				*line;
-// 	struct s_data_map	*next;
-// }	t_data_map;
-
-typedef	struct s_list_coor
-{
-	int					x;
-	int					y;
-	struct s_list_coor	*next;
-}	t_list_coor;
-
-
 typedef struct s_tiles
 {
-	void		*img;
-	int			width;
-	int			height;
-	t_list_coor	*coor;
+	void	*img;
+	int		width;
+	int		height;
+	t_list	*coor;
 }	t_tiles;
 
+typedef struct s_collectibles
+{
+	void	*img;
+	int		width;
+	int		height;
+	t_list	*coor;
+}	t_collectibles;
 
+typedef struct s_map
+{
+	t_tiles	*lst_tile;
+	t_collectibles	*lst_collectible;
+
+};
 
 #endif
