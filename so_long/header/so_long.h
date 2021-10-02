@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/30 11:31:23 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/01 15:38:29 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h> //printf, perror
 # include <stdlib.h> //malloc, free, exit
 # include <string.h> //strerror
-# include "mlx.h"
+# include "../minilibx_opengl_20191021/mlx.h"
 
 typedef struct	s_data
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:33:23 by gyeon             #+#    #+#             */
-/*   Updated: 2021/09/30 18:15:10 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/01 15:37:50 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ int main()
 {
 	void	*mlx;
 	void	*mlx_win;
-	
+	void	*img;
+	int		img_width;
+	int		img_height;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello MLX!");
-	my_mlx_rec(mlx, mlx_win, 100, 200, 200, 300);
+	//my_mlx_rec(mlx, mlx_win, 100, 200, 200, 300);
+	img = mlx_png_file_to_image(mlx, "./imgs/lenna.png", &img_width, &img_height);
+	mlx_put_image_to_window(mlx, mlx_win, img, img_width, img_height);
 	mlx_loop(mlx);
 	return (0);
 }

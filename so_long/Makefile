@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+         #
+#    By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 14:08:10 by gyeon             #+#    #+#              #
-#    Updated: 2021/09/30 11:40:41 by gyeon            ###   ########.fr        #
+#    Updated: 2021/10/01 15:39:53 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
 FLAGS = -Wall -Wextra -Werror
-FLAGS_MLX = -L $(DIR_MLX) -lmlx -framework OpenGL -framework Appkit
+FLAGS_MLX = -L $(DIR_MLX) -Lmlx -lmlx -framework OpenGL -framework Appkit
 DIR_MLX = ./minilibx_opengl_20191021
 TARGET = so_long
 DIR_SRCS = ./srcs/
