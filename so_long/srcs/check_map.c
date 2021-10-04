@@ -6,11 +6,12 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:57:17 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/04 11:26:50 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/04 15:20:32 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
+
 /*
 1. 0빈공간, 1벽, C수집품, E탈출구, P플레이어로만 구성된다.
 	-> 해당 요소가 없는게 있다면 에러
@@ -23,19 +24,73 @@
 4. 잘못되면 Error\n출력하고 lst free, NULL반환
 	좋은 맵이면 파싱한 위치정보를 반환.
 */
+
+int	check_usable_word(char word)
+{
+	return (word == EMPTY || word == WALL || word == COLLECTIBLE
+		|| word == EXIT || word == PLAYER);
+}
+
 int	check_line_just_one(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i] != '\0')
-		if (line[i] != '1')
-			return (-1);
+		if (line[i++] != '1')
+			return (ERROR);
+	return (i);
+}
+
+int	check_line(char *line)
+{
+	static short	flg_player = 0;
+	int	i;
+
+	i = 0;
+	if (line[0] != '1')
+		return (ERROR);
+	while (line[i] != '\0')
+	{
+		if (check_usable_word(line[i]) == FALSE)
+			return (ERROR);
+		else if (line[i] == PLAYER)
+		{
+			if (flg_player == 0)
+				++flg_player;
+			else
+				return (ERROR);
+		}
+		if (line[i + 1] == '\0' && line[i] != '1')
+			return (ERROR);
+		++i;
+	}
 	return (i);
 }
 
 int	check_map(t_list *lst)
 {
 	int	width;
-	int	height;
+
+	if (lst == NULL || lst->content == NULL)
+		return (ERROR);
+	width = check_line_just_one((char *)lst->content);
+	if (width == ERROR)
+		return (ERROR);
+	if (lst->next != NULL)
+	{
+		while (lst->next != NULL)
+		{
+			lst = lst->next;
+			if (lst->content != NULL)
+				if (check_line((char *)lst->content) != width)
+				{
+					return (ERROR);
+				}
+		}
+		if (check_line_just_one((char *)lst->content) != width)
+			return (ERROR);
+		return (TRUE);
+	}
+	return (ERROR);
 }

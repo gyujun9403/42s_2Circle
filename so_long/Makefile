@@ -6,12 +6,12 @@
 #    By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 14:08:10 by gyeon             #+#    #+#              #
-#    Updated: 2021/10/02 15:36:15 by gyeon            ###   ########.fr        #
+#    Updated: 2021/10/04 17:53:47 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
-FLAGS = -Wall -Wextra -Werror
+#FLAGS = -Wall -Wextra -Werror
 FLAGS_MLX = -L $(DIR_MLX) -lz -framework OpenGL -framework Appkit
 TARGET = so_long
 DIR_MLX = ./minilibx_opengl_20191021/
@@ -19,7 +19,10 @@ DIR_SRCS = ./srcs/
 DIR_HEARDER = ./header
 DIR_LIBFT = ./libft/
 DIR_GNL = ./get-next-line/
-SRCS = main.c
+SRCS = main.c \
+	check_map.c \
+	check_img.c \
+	handle_error.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft.a
 MLX = libmlx.a
