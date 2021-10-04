@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/02 17:27:55 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/04 10:48:23 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,45 @@ typedef struct s_tiles
 	t_list	*coor;
 }	t_tiles;
 
-typedef struct s_collectibles
+typedef struct s_colls
 {
 	void	*img;
 	int		width;
 	int		height;
 	t_list	*coor;
-}	t_collectibles;
+}	t_colls;
+
+typedef struct s_background
+{
+	void	*img;
+	int		width;
+	int		height;
+	t_list	*coor;
+}	t_background;
+
+typedef struct s_player
+{
+	void	*img;
+	int		width;
+	int		height;
+	t_list	*coor;
+}	t_player;
+
+typedef struct s_exit
+{
+	void	*img;
+	int		width;
+	int		height;
+	t_list	*coor;
+}	t_exit;
 
 typedef struct s_map
 {
-	t_tiles	*lst_tile;
-	t_collectibles	*lst_collectible;
-
-};
+	t_tiles			*tiles_info;
+	t_colls			*coll_info;
+	t_background	*bg_info;
+	t_player		*player_info;
+	t_exit			*exit_info;
+}	t_map;
 
 #endif

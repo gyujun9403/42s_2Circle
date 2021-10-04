@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:57:17 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/02 17:28:21 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/04 11:26:50 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@
 4. 잘못되면 Error\n출력하고 lst free, NULL반환
 	좋은 맵이면 파싱한 위치정보를 반환.
 */
-check_map(t_list *lst)
+int	check_line_just_one(char *line)
 {
+	int	i;
 
+	i = 0;
+	while (line[i] != '\0')
+		if (line[i] != '1')
+			return (-1);
+	return (i);
+}
+
+int	check_map(t_list *lst)
+{
+	int	width;
+	int	height;
 }
