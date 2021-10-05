@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/04 17:32:16 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/05 17:15:57 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,24 @@ typedef struct s_player
 	int		coor[2];
 }	t_player;
 
+typedef struct s_mlxwin
+{
+	void	*mlx;
+	void	*win;
+	int	win_width;
+	int win_height;
+}	t_mlxwim;
+
+
 typedef struct s_map
 {
-	t_obj		*empty_info;
-	t_obj		*wall_info;
-	t_obj		*coll_info;
-	t_player	*player_info;
-	t_obj		*exit_info;
+	t_list		*parsed_map;
+	t_mlxwim	data_mlx;
+	t_obj		empty_info;
+	t_obj		wall_info;
+	t_obj		coll_info;
+	t_player	player_info;
+	t_obj		exit_info;
 }	t_map;
 
 int	prt_error();
@@ -53,5 +64,6 @@ int	prt_map_error();
 int	prt_img_error();
 int	check_map(t_list *lst);
 int init_map(void *mlx, t_map *map);
+t_list	*parse_map();
 
 #endif
