@@ -5,3 +5,4 @@ test*
 *test*
 *.vscode
 so_long/so_long
+.*
