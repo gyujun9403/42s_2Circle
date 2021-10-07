@@ -6,17 +6,11 @@
 /*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:33:23 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/07 16:28:11 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/07 18:34:33 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h" 
-
-void prt_two_int(void *ptr)
-{
-	printf("[0]\t: %d\n", ((int *)ptr)[0]);
-	printf("[1]\t: %d\n", ((int *)ptr)[1]);
-}
 
 int	set_imgs_using_coor(t_map *map_info, int kind)
 {
@@ -67,4 +61,4 @@ int main()
 	set_imgs_using_coor(&map_info, PLAYER);
 	mlx_loop(map_info.data_mlx.mlx);
 	return (0);
-}
+} 
