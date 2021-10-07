@@ -6,7 +6,7 @@
 #    By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 14:08:10 by gyeon             #+#    #+#              #
-#    Updated: 2021/10/05 15:35:39 by gyeon            ###   ########.fr        #
+#    Updated: 2021/10/07 10:45:50 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = main.c \
 	check_map.c \
 	check_img.c \
 	parse_map.c \
+	set_coor_and_size.c \
 	handle_error.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft.a
