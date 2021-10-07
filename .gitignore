@@ -6,5 +6,5 @@ test*
 *.vscode
 so_long/so_long
 */.DS_Store
-DS_Store
+.DS_Store
 
