@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_coor_and_size.c                                :+:      :+:    :+:   */
+/*   match_map_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:28:47 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/07 16:25:56 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/08 17:11:35 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	set_coor(t_list **coor, int x, int y)
 {
-	//처음인경우, 리스트를 추가하고
-	//아닌경우 맨 뒤에 추가해서
-	//content 마지막 리스트 원소에
 	t_list	*temp;
 	int		*coor_data;
 
@@ -38,13 +35,26 @@ int	set_coor(t_list **coor, int x, int y)
 	return (TRUE);
 }
 
-int	tour_parsed_map(t_map *map_info)
+t_list	**get_obj(t_map *map_info, char c)
 {
-	int	x;
-	int	y;
-	t_list	*temp;
+	if (c == WALL)
+		return (&map_info->wall_info.coor);
+	else if (c == EXIT)
+		return (&map_info->exit_info.coor);
+	else if (c == COLLECTIBLE)
+		return (&map_info->coll_info.coor);
+	else if (c == PLAYER)
+		return (&map_info->player_info.coor);
+	return (NULL);
+}
 
-	x = 0;
+int	match_map2list(t_map *map_info)
+{
+	int		x;
+	int		y;
+	t_list	*temp;
+	t_list	**obj;
+
 	y = 0;
 	temp = map_info->parsed_map;
 	while (temp != NULL)
@@ -52,29 +62,12 @@ int	tour_parsed_map(t_map *map_info)
 		x = 0;
 		while (((char *)(temp->content))[x] != '\0')
 		{
-			if (((char *)(temp->content))[x] == WALL)
-			{
-				if (set_coor(&map_info->wall_info.coor, x * OBJ_W, y * OBJ_H) == FALSE)
+			obj = get_obj(map_info, ((char *)(temp->content))[x]);
+			if (obj != NULL)
+				if (set_coor(obj, x * OBJ_W, y * OBJ_W) == FALSE)
 					return (FALSE);
-			}
-			else if (((char *)(temp->content))[x] == EXIT)
-			{
-				if (set_coor(&map_info->exit_info.coor, x * OBJ_W, y * OBJ_H) == FALSE)
-					return (FALSE);
-			}
-			else if (((char *)(temp->content))[x] == COLLECTIBLE)
-			{
-				if (set_coor(&map_info->coll_info.coor, x * OBJ_W, y * OBJ_H) == FALSE)
-					return (FALSE);
-			}
-			else if (((char *)(temp->content))[x] == PLAYER)
-			{
-				if (set_coor(&map_info->player_info.coor, x * PLAYER_W, y * PLAYER_H) == FALSE)
-					return (FALSE);
-			}
-			if (set_coor(&map_info->empty_info.coor, x * OBJ_W, y * OBJ_H) == FALSE)
+			if (!set_coor(&map_info->empty_info.coor, x++*OBJ_W, y * OBJ_H))
 				return (FALSE);
-			++x;
 		}
 		++y;
 		temp = temp->next;

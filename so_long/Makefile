@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+         #
+#    By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 14:08:10 by gyeon             #+#    #+#              #
-#    Updated: 2021/10/07 10:45:50 by gyeon            ###   ########.fr        #
+#    Updated: 2021/10/08 17:07:29 by gyeon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
-#FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 FLAGS_MLX = -L $(DIR_MLX) -lmlx -lz -framework OpenGL -framework Appkit
 TARGET = so_long
 DIR_MLX = ./minilibx_opengl_20191021/
@@ -23,7 +23,9 @@ SRCS = main.c \
 	check_map.c \
 	check_img.c \
 	parse_map.c \
-	set_coor_and_size.c \
+	match_map_data.c \
+	print_game.c \
+	controller.c \
 	handle_error.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft.a

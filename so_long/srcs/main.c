@@ -3,62 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:33:23 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/07 18:34:33 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/08 17:06:32 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/so_long.h" 
+#include "../header/so_long.h"
 
-int	set_imgs_using_coor(t_map *map_info, int kind)
+int	main(void)
 {
-	t_obj	sel;
-	t_list	*temp;
-
-	if (kind == EMPTY)
-		sel = map_info->empty_info;
-	else if (kind == WALL)
-		sel = map_info->wall_info;
-	else if (kind == COLLECTIBLE)
-		sel = map_info->coll_info;
-	else if (kind == EXIT)
-		sel = map_info->exit_info;
-	else //if (kind == PLAYER)
-		sel = map_info->player_info;
-	temp = sel.coor;
-	if (temp == NULL)
-		return (FALSE);
-	while (temp != NULL)
-	{
-		mlx_put_image_to_window(map_info->data_mlx.mlx, 
-			map_info->data_mlx.win, 
-			sel.img,((int *)(temp->content))[0], ((int *)(temp->content))[1]);
-		temp = temp->next;
-	}
-	return (TRUE);
-}
-
-int main()
-{
-	int		i;
 	t_map	map_info;
 
+	map_info.cnt_action = 0;
 	map_info.parsed_map = parse_map();
 	if (map_info.parsed_map == NULL)
 		prt_map_error();
 	map_info.data_mlx.mlx = mlx_init();
 	if (init_map(map_info.data_mlx.mlx, &map_info) == ERROR)
-	 	return (prt_img_error());
-	if (tour_parsed_map(&map_info) == FALSE)
-		prt_map_error();
-	map_info.data_mlx.win = mlx_new_window(map_info.data_mlx.mlx, map_info.data_mlx.win_width, map_info.data_mlx.win_height, "Hello MLX!");
-	set_imgs_using_coor(&map_info, EMPTY);
-	set_imgs_using_coor(&map_info, WALL);
-	set_imgs_using_coor(&map_info, EXIT);
-	set_imgs_using_coor(&map_info, COLLECTIBLE);
-	set_imgs_using_coor(&map_info, PLAYER);
+		return (prt_img_error());
+	if (match_map2list(&map_info) == FALSE)
+		return (prt_map_error());
+	map_info.data_mlx.win = mlx_new_window(map_info.data_mlx.mlx,
+			map_info.data_mlx.win_width, map_info.data_mlx.win_height,
+			"gyeon's so_long");
+	prt_all_objs(&map_info);
+	printf("action : %d\n", map_info.cnt_action);
+	mlx_key_hook(map_info.data_mlx.win, key_press, &map_info);
+	mlx_hook(map_info.data_mlx.win, 17, 0, close_game, &map_info);
 	mlx_loop(map_info.data_mlx.mlx);
 	return (0);
-} 
+}

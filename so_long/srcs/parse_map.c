@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:08:00 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/05 17:25:36 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/08 16:20:41 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*make_map(int fd)
 	return (temp);
 }
 
-t_list	*parse_map()
+t_list	*parse_map(void)
 {
 	int		fd;
 	t_list	*result_gnl;
