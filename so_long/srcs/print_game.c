@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:54:14 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 16:21:59 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/09 22:09:37 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ int	prt_obj(t_map *map_info, int kind)
 	return (TRUE);
 }
 
+void	prt_string(t_map *map_info)
+{
+	char	*cnt_string;
+	char	*temp_string;
+
+	cnt_string = ft_itoa(map_info->cnt_action);
+	temp_string = ft_strdup("your action count : ");
+	temp_string = ft_strjoin(temp_string, cnt_string);
+	mlx_string_put(map_info->data_mlx.mlx,
+		map_info->data_mlx.win,
+		25, 25, 0x00FFFFFF, temp_string);
+	free(temp_string);
+}
+
 void	prt_all_objs(t_map *map_info)
 {
 	prt_obj(map_info, EMPTY);
@@ -66,4 +80,5 @@ void	prt_all_objs(t_map *map_info)
 	prt_obj(map_info, EXIT);
 	prt_obj(map_info, COLLECTIBLE);
 	prt_obj(map_info, PLAYER);
+	prt_string(map_info);
 }

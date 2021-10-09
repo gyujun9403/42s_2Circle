@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 12:04:50 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 10:44:11 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/09 21:49:19 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@
 # define FILE_COLL "./imgs/coll.xpm"
 # define FILE_EXIT "./imgs/exit.xpm"
 # define FILE_PLAYER "./imgs/player.xpm"
+# define FILE_PLAYER_M "./imgs/player_m.xpm"
 
 #endif

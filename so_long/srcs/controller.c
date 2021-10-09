@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:58:24 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 16:15:22 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/09 22:09:06 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int	key_press(int pressed_key, t_map *map_info)
 	if (check_moveable(map_info, move_x, move_y) == FALSE)
 		return (FALSE);
 	++map_info->cnt_action;
-	printf("action : %d\n", map_info->cnt_action);
 	((int *)map_info->player_info.coor->content)[0] += move_x;
 	((int *)map_info->player_info.coor->content)[1] += move_y;
 	prt_all_objs(map_info);

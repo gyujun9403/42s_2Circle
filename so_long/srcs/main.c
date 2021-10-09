@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:33:23 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 17:06:32 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/09 22:03:58 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(void)
 			map_info.data_mlx.win_width, map_info.data_mlx.win_height,
 			"gyeon's so_long");
 	prt_all_objs(&map_info);
-	printf("action : %d\n", map_info.cnt_action);
 	mlx_key_hook(map_info.data_mlx.win, key_press, &map_info);
 	mlx_hook(map_info.data_mlx.win, 17, 0, close_game, &map_info);
 	mlx_loop(map_info.data_mlx.mlx);
