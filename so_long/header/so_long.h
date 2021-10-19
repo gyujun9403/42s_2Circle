@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 17:13:43 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/19 16:43:35 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct s_map
 int		prt_map_error(void);
 int		prt_img_error(void);
 int		check_map(t_list *lst);
-int		init_map(void *mlx, t_map *map);
-t_list	*parse_map(void);
+int	init_map(t_map *map_info);
+t_list	*parse_map(char *file);
 int		match_map2list(t_map *map_info);
 void	prt_all_objs(t_map *map_info);
 int		close_game(t_map *map_info);

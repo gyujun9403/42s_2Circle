@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:08:00 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 16:20:41 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/19 16:36:38 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ t_list	*make_map(int fd)
 	return (temp);
 }
 
-t_list	*parse_map(void)
+t_list	*parse_map(char *file)
 {
 	int		fd;
 	t_list	*result_gnl;
 
-	fd = open(FILE_MAP, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	else

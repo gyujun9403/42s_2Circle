@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:39:24 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/09 21:37:48 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/19 16:43:27 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,20 @@ int	check_n_set_obj(void *mlx, t_obj *obj, char *file_dir)
 	return (TRUE);
 }
 
-int	check_n_set_ani(void *mlx, t_obj *obj, char *file_dir)
+int	init_map(t_map *map_info)
 {
-	obj->img
-		= mlx_xpm_file_to_image(mlx, file_dir, &(obj->width), &(obj->height));
-	if (obj->img == NULL)
-		return (ERROR);
-	obj->coor = NULL;
-	return (TRUE);
-}
+	void	*mlx;
 
-int	init_map(void *mlx, t_map *map)
-{
-	if (check_n_set_obj(mlx, &(map->empty_info), FILE_EMPTY) == ERROR)
+	mlx = map_info->data_mlx.mlx;
+	if (check_n_set_obj(mlx, &(map_info->empty_info), FILE_EMPTY) == ERROR)
 		return (ERROR);
-	if (check_n_set_obj(mlx, &(map->wall_info), FILE_WALL) == ERROR)
+	if (check_n_set_obj(mlx, &(map_info->wall_info), FILE_WALL) == ERROR)
 		return (ERROR);
-	if (check_n_set_obj(mlx, &(map->exit_info), FILE_EXIT) == ERROR)
+	if (check_n_set_obj(mlx, &(map_info->exit_info), FILE_EXIT) == ERROR)
 		return (ERROR);
-	if (check_n_set_obj(mlx, &(map->coll_info), FILE_COLL) == ERROR)
+	if (check_n_set_obj(mlx, &(map_info->coll_info), FILE_COLL) == ERROR)
 		return (ERROR);
-	if (check_n_set_obj(mlx, &(map->player_info), FILE_PLAYER) == ERROR)
+	if (check_n_set_obj(mlx, &(map_info->player_info), FILE_PLAYER) == ERROR)
 		return (ERROR);
 	return (TRUE);
 }
