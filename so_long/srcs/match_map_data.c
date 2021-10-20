@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:28:47 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 17:11:35 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/20 18:00:02 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	match_map2list(t_map *map_info)
 			obj = get_obj(map_info, ((char *)(temp->content))[x]);
 			if (obj != NULL)
 				if (set_coor(obj, x * OBJ_W, y * OBJ_W) == FALSE)
-					return (FALSE);
+					malloc_error();
 			if (!set_coor(&map_info->empty_info.coor, x++*OBJ_W, y * OBJ_H))
-				return (FALSE);
+				malloc_error();
 		}
 		++y;
 		temp = temp->next;

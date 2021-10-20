@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:57:17 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/08 16:05:53 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/20 17:53:28 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	check_line(char *line)
 			else
 				return (ERROR);
 		}
-		if (line[i + 1] == '\0' && line[i] != '1')
+		if ((line[i + 1] == '\0' && line[i] != '1')
+			|| i >= MAX_WIDTH)
 			return (ERROR);
 		++i;
 	}
@@ -60,10 +61,12 @@ int	check_map(t_list *lst)
 	int	width;
 
 	if (lst == NULL || lst->content == NULL)
-		return (ERROR);
+		map_error();
+	if (ft_lstsize(lst) >= MAX_HEIGHT)
+		map_error();
 	width = check_line_just_one((char *)lst->content);
-	if (width == ERROR)
-		return (ERROR);
+	if (width == ERROR || width < 3)
+		map_error();
 	if (lst->next != NULL)
 	{
 		while (lst->next != NULL)
@@ -72,12 +75,12 @@ int	check_map(t_list *lst)
 			if (lst->content != NULL)
 			{
 				if (check_line((char *)lst->content) != width)
-					return (ERROR);
+					map_error();
 			}
 		}
 		if (check_line_just_one((char *)lst->content) != width)
-			return (ERROR);
+			map_error();
 		return (TRUE);
 	}
-	return (ERROR);
+	return (map_error());
 }
