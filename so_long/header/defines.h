@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 12:04:50 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 00:15:57 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/20 18:08:36 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@
 # define KEY_S			1
 # define KEY_D			2
 
-# define FILE_EMPTY "imgs/empty.xpm"
-# define FILE_WALL "imgs/wall.xpm"
-# define FILE_COLL "imgs/coll.xpm"
-# define FILE_EXIT "imgs/exit.xpm"
-# define FILE_PLAYER "imgs/player.xpm"
-# define FILE_PLAYER_M "imgs/player_m.xpm"
+# define FILE_EMPTY		"imgs/empty.xpm"
+# define FILE_WALL		"imgs/wall.xpm"
+# define FILE_COLL		"imgs/coll.xpm"
+# define FILE_EXIT		"imgs/exit.xpm"
+# define FILE_PLAYER	"imgs/player.xpm"
+# define FILE_PLAYER_M	"imgs/player_m.xpm"
 # define TARGET "so_long"
 
 #endif

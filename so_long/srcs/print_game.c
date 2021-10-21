@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:54:14 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/09 22:09:37 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/21 18:10:34 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	close_game(t_map *map_info)
 	return (0);
 }
 
-int	prt_obj(t_map *map_info, int kind)
+void	prt_obj(t_map *map_info, int kind)
 {
 	t_obj	sel;
 	t_list	*temp;
@@ -48,7 +48,7 @@ int	prt_obj(t_map *map_info, int kind)
 		sel = map_info->player_info;
 	temp = sel.coor;
 	if (temp == NULL)
-		return (FALSE);
+		return ;
 	while (temp != NULL)
 	{
 		mlx_put_image_to_window(map_info->data_mlx.mlx,
@@ -56,7 +56,7 @@ int	prt_obj(t_map *map_info, int kind)
 			sel.img, ((int *)(temp->content))[0], ((int *)(temp->content))[1]);
 		temp = temp->next;
 	}
-	return (TRUE);
+	return ;
 }
 
 void	prt_string(t_map *map_info)

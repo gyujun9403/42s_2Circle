@@ -6,18 +6,18 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 18:02:21 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/20 18:08:04 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <fcntl.h> //open, 
-# include <unistd.h> //close, read, write
-# include <stdio.h> //printf, perror
-# include <stdlib.h> //malloc, free, exit
-# include <string.h> //strerror
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
 # include "./defines.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 # include "../get-next-line/get_next_line_bonus.h"
