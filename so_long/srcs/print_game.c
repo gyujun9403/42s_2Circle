@@ -6,12 +6,16 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:54:14 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/21 18:10:34 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 13:05:55 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
 
+/* 
+** mlx_destroy_window(...); makes leaks.
+** So I make OS do free() by using exit().
+*/
 int	close_game(t_map *map_info)
 {
 	mlx_destroy_image(map_info->data_mlx.mlx, map_info->empty_info.img);
@@ -20,13 +24,6 @@ int	close_game(t_map *map_info)
 	mlx_destroy_image(map_info->data_mlx.mlx, map_info->exit_info.img);
 	mlx_destroy_image(map_info->data_mlx.mlx, map_info->player_info.img);
 	mlx_clear_window(map_info->data_mlx.mlx, map_info->data_mlx.win);
-	mlx_destroy_window(map_info->data_mlx.mlx, map_info->data_mlx.win);
-	ft_lstclear(&(map_info->parsed_map), free);
-	ft_lstclear(&(map_info->empty_info.coor), free);
-	ft_lstclear(&(map_info->wall_info.coor), free);
-	ft_lstclear(&(map_info->coll_info.coor), free);
-	ft_lstclear(&(map_info->exit_info.coor), free);
-	ft_lstclear(&(map_info->player_info.coor), free);
 	exit(0);
 	return (0);
 }
@@ -62,15 +59,15 @@ void	prt_obj(t_map *map_info, int kind)
 void	prt_string(t_map *map_info)
 {
 	char	*cnt_string;
-	char	*temp_string;
+	char	*summed_string;
 
 	cnt_string = ft_itoa(map_info->cnt_action);
-	temp_string = ft_strdup("your action count : ");
-	temp_string = ft_strjoin(temp_string, cnt_string);
+	summed_string = ft_strjoin("your action count : ", cnt_string);
 	mlx_string_put(map_info->data_mlx.mlx,
 		map_info->data_mlx.win,
-		25, 25, 0x00FFFFFF, temp_string);
-	free(temp_string);
+		25, 25, 0x00FFFFFF, summed_string);
+	free(cnt_string);
+	free(summed_string);
 }
 
 void	prt_all_objs(t_map *map_info)

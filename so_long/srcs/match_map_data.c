@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:28:47 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 18:00:02 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 10:34:10 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_list	**get_obj(t_map *map_info, char c)
 	return (NULL);
 }
 
-int	match_map2list(t_map *map_info)
+void	match_map2list(t_map *map_info)
 {
 	int		x;
 	int		y;
@@ -74,5 +74,4 @@ int	match_map2list(t_map *map_info)
 	}
 	map_info->data_mlx.win_width = x * OBJ_W;
 	map_info->data_mlx.win_height = y * OBJ_H;
-	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:33:23 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 18:00:16 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 12:13:31 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int ac, char **av)
 {
+	char	*temp_str;
 	t_map	map_info;
 
 	if (ac != 2)
@@ -23,8 +24,9 @@ int	main(int ac, char **av)
 	map_info.data_mlx.mlx = mlx_init();
 	if (map_info.data_mlx.mlx == NULL)
 		mlx_error();
-	map_info.dir_root = ft_strdup(av[0]);
-	map_info.dir_root = ft_strtrim(map_info.dir_root, TARGET);
+	temp_str = ft_strdup(av[0]);
+	map_info.dir_root = ft_strtrim(temp_str, TARGET);
+	free(temp_str);
 	init_map(&map_info);
 	match_map2list(&map_info);
 	map_info.data_mlx.win = mlx_new_window(map_info.data_mlx.mlx,

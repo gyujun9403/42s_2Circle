@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:08:00 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 17:56:26 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 09:53:06 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_list	*make_map(int fd)
 	t_list	*temp;
 
 	temp = ft_lstnew(NULL);
+	if (temp == NULL)
+		return (NULL);
 	get_next_line(fd, (char **)(&temp->content));
 	while (1)
 	{

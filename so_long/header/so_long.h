@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:26:29 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 18:08:04 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 13:04:26 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int		img_error(void);
 int		mlx_error(void);
 int		malloc_error(void);
 int		check_map(t_list *lst);
-int		init_map(t_map *map_info);
+void	init_map(t_map *map_info);
 t_list	*parse_map(char *file);
-int		match_map2list(t_map *map_info);
+void	match_map2list(t_map *map_info);
 void	prt_all_objs(t_map *map_info);
 int		close_game(t_map *map_info);
 int		key_press(int pressed_key, t_map *map_info);

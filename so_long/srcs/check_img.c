@@ -6,7 +6,7 @@
 /*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:39:24 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 17:53:14 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/22 10:31:38 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_n_set_obj(void *mlx, t_obj *obj, char *dir_root, char *dir_file)
 	return (TRUE);
 }
 
-int	init_map(t_map *map_info)
+void	init_map(t_map *map_info)
 {
 	void	*mlx;
 
@@ -48,5 +48,4 @@ int	init_map(t_map *map_info)
 	if (check_n_set_obj(mlx, &(map_info->player_info),
 			map_info->dir_root, FILE_PLAYER) == ERROR)
 		mlx_error();
-	return (TRUE);
 }
