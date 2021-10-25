@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyeon <gyeon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyeon <gyeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 12:04:50 by gyeon             #+#    #+#             */
-/*   Updated: 2021/10/20 18:08:36 by gyeon            ###   ########.fr       */
+/*   Updated: 2021/10/25 12:04:53 by gyeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,9 @@
 # define PLAYER_W	64
 # define PLAYER_H	64
 # define KEY_ESC		53
-# define KEY_Q			12
-# define KEY_W			13
-# define KEY_E			14
-# define KEY_R			15
+# define KEY_W			1
 # define KEY_A			0
-# define KEY_S			1
+# define KEY_S			13
 # define KEY_D			2
 
 # define FILE_EMPTY		"imgs/empty.xpm"
